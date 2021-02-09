@@ -1,0 +1,21 @@
+.DEFAULT_GOAL=help
+CMD_DOCKER_RUN=docker-compose exec app
+COLOR_NONE="\\033[0m"
+COLOR_BLUE="\\033[34m"
+COLOR_CYAN="\\033[36m"
+COLOR_GREEN="\\033[32m"
+COLOR_YELLOW="\\033[33m"
+COLOR_ORANGE="\\033[43m"
+COLOR_RED="\\033[31m"
+
+lint: lint-cs lint-markdown lint-yaml
+lint-cs:
+	docker run --rm -v $(PWD):/data/ -w /data/ oskarstark/php-cs-fixer-ga:2.18.2 --dry-run --diff --allow-risky=yes
+lint-markdown:
+	docker run --rm -v "$(PWD):/app" -w /app markdownlint/markdownlint -i /app
+lint-yaml:
+	docker run --rm -v $(PWD):/app -w /app sdesbure/yamllint sh -c "yamllint /app/*.yml"
+
+test: sat
+sat:
+	$(CMD_DOCKER_RUN) vendor/bin/phpstan analyse . -vvv
