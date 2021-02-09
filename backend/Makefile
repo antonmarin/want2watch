@@ -8,9 +8,13 @@ COLOR_YELLOW="\\033[33m"
 COLOR_ORANGE="\\033[43m"
 COLOR_RED="\\033[31m"
 
-lint: lint-cs lint-markdown lint-yaml
+lint: lint-cs lint-dockerfile lint-markdown lint-yaml
 lint-cs:
 	docker run --rm -v $(PWD):/data/ -w /data/ oskarstark/php-cs-fixer-ga:2.18.2 --dry-run --diff --allow-risky=yes
+lint-dockerfile:
+	docker run --rm -tv ${PWD}:/app hadolint/hadolint:v1.8.0 \
+		hadolint \
+		/app/Dockerfile
 lint-markdown:
 	docker run --rm -v "$(PWD):/app" -w /app markdownlint/markdownlint -i /app
 lint-yaml:
