@@ -1,0 +1,15 @@
+{
+    "name": "antonmarin/want2watch",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Anton Marin",
+            "email": "antonaryo85@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^7.4"
+    }
+}
