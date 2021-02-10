@@ -10,6 +10,7 @@ requirements:
 
 - clone project using `git clone ...`
 - `docker-compose up -d`
+- `docker-compose exec app composer install`
 
 ## Documenting
 

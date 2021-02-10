@@ -8,7 +8,10 @@ COLOR_YELLOW="\\033[33m"
 COLOR_ORANGE="\\033[43m"
 COLOR_RED="\\033[31m"
 
-lint: lint-cs lint-dockerfile lint-markdown lint-yaml
+lint: lint-composer lint-cs lint-dockerfile lint-markdown lint-yaml
+lint-composer:
+	docker run --rm -iv $(PWD):/app/ composer:1.9 validate --no-interaction --no-check-publish --with-dependencies
+	docker run --rm -v $(PWD):/app pplotka/local-php-security-checker-github-actions:v1.0.0
 lint-cs:
 	docker run --rm -v $(PWD):/data/ -w /data/ oskarstark/php-cs-fixer-ga:2.18.2 --dry-run --diff --allow-risky=yes
 lint-dockerfile:
@@ -16,7 +19,7 @@ lint-dockerfile:
 		hadolint \
 		/app/Dockerfile
 lint-markdown:
-	docker run --rm -v "$(PWD):/app" -w /app markdownlint/markdownlint -i /app
+	docker run --rm -v "$(PWD):/app" -w /app markdownlint/markdownlint -i -g /app
 lint-yaml:
 	docker run --rm -v $(PWD):/app -w /app sdesbure/yamllint sh -c "yamllint /app/*.yml"
 
