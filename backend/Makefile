@@ -21,7 +21,7 @@ lint-dockerfile:
 lint-markdown:
 	docker run --rm -v "$(PWD):/app" -w /app markdownlint/markdownlint -i -g /app
 lint-yaml:
-	docker run --rm -v $(PWD):/app -w /app sdesbure/yamllint sh -c "yamllint /app/*.yml"
+	docker run --rm -v $(PWD):/app -w /app sdesbure/yamllint sh -c "yamllint /app/*.yml /app/resources/*.yml"
 
 fix-cs:
 	docker run --rm -v $(PWD):/data/ -w /data/ oskarstark/php-cs-fixer-ga:2.18.2 --diff --allow-risky=yes
@@ -31,3 +31,6 @@ composer-require:
 	$(CMD_DOCKER_RUN) bin/composer-require-checker.phar check /app/composer.json
 sat:
 	$(CMD_DOCKER_RUN) vendor/bin/phpstan analyse
+
+spec-ui:
+	docker run -p 8092:8080 -e URL=openapi.yml -v $(PWD)/resources/spec_http.yml:/usr/share/nginx/html/openapi.yml swaggerapi/swagger-ui
