@@ -28,7 +28,10 @@
         "symfony/http-kernel": "^5.2"
     },
     "require-dev": {
+        "pepakriz/phpstan-exception-rules": "^0.11.6",
         "phpstan/phpstan": "^0.12.74",
+        "phpstan/phpstan-deprecation-rules": "^0.12.6",
+        "phpstan/phpstan-strict-rules": "^0.12.9",
         "roave/security-advisories": "dev-master"
     }
 }
