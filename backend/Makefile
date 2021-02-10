@@ -25,4 +25,4 @@ lint-yaml:
 
 test: sat
 sat:
-	$(CMD_DOCKER_RUN) vendor/bin/phpstan analyse . -vvv
+	$(CMD_DOCKER_RUN) vendor/bin/phpstan analyse

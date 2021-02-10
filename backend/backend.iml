@@ -20,6 +20,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/event-dispatcher" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/log" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phpstan/phpstan" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
