@@ -2,9 +2,22 @@
 
 declare(strict_types=1);
 
+use antonmarin\want2watch\Core\Kernel;
+use Symfony\Component\ErrorHandler\Debug;
 use Symfony\Component\HttpFoundation\Request;
 
-require '../vendor/autoload.php';
+require dirname(__DIR__).'/vendor/autoload.php';
 
+if ($_ENV['APP_DEBUG']) {
+    umask(0000);
+
+    Debug::enable();
+}
+
+$kernel = new Kernel($_ENV['APP_ENV'], (bool) $_ENV['APP_DEBUG']);
 $request = Request::createFromGlobals();
-echo "hello";
+$response = $kernel->handle($request);
+$response->send();
+$kernel->terminate($request, $response);
+
+require dirname(__DIR__).'/vendor/autoload.php';

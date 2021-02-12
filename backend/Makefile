@@ -33,4 +33,4 @@ sat:
 	$(CMD_DOCKER_RUN) vendor/bin/phpstan analyse
 
 spec-ui:
-	docker run -p 8092:8080 -e URL=openapi.yml -v $(PWD)/resources/spec_http.yml:/usr/share/nginx/html/openapi.yml swaggerapi/swagger-ui
+	docker run -p 8092:8080 -e URL=openapi.yml -v $(PWD)/http/specification.yml:/usr/share/nginx/html/openapi.yml swaggerapi/swagger-ui
