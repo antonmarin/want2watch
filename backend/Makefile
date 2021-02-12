@@ -26,7 +26,7 @@ lint-yaml:
 fix-cs:
 	docker run --rm -v $(PWD):/data/ -w /data/ oskarstark/php-cs-fixer-ga:2.18.2 --diff --allow-risky=yes
 
-test: sat
+test: composer-require sat
 composer-require:
 	$(CMD_DOCKER_RUN) bin/composer-require-checker.phar check /app/composer.json
 sat:
