@@ -1,3 +1,4 @@
-Это контекст. Часто их разделяют по отделам или группам заказчиков.
+# Bounded context
 
-Основная задача контекстов разделить языки принятые в разных подразделениях.
+It's often separated by department or groups of customers. Main target of contexts is
+to split languages of different units.
