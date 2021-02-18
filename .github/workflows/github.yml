@@ -1,0 +1,12 @@
+name: Validate github configuration
+on: 
+  push:
+    paths:
+      - '.github/workflows/**'
+jobs:
+  validate_workflows:
+    name: Integration pipeline
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
