@@ -1,8 +1,5 @@
 name: Backend pipeline
-on: 
-  push:
-    paths:
-      - backend
+on: [push]
 jobs:
   integration-pipeline:
     name: Integration pipeline
