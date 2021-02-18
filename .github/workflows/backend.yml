@@ -1,4 +1,4 @@
-name: onpush
+name: Backend pipeline
 on: 
   push:
     paths:
