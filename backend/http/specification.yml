@@ -8,12 +8,11 @@ servers:
 paths:
   /:
     get:
-      responses: 
+      responses:
         200:
           description: OK
-  
+
 components:
   schemas:
     ErrorResponse:
       type: object
-      

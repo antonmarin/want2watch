@@ -2,20 +2,25 @@ name: Backend pipeline
 on: 
   push:
     paths:
-      - backend
+      - 'backend/**'
 defaults:
   run:
     working-directory: backend
 jobs:
-  integration-pipeline:
-    name: Integration pipeline
+  pre-build:
+    name: pre build
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
         uses: actions/checkout@v1
       - name: Pre-build validations
         run: make lint
-      - name: Build
-        run: make build
+      
+  post-build:
+    name: post build
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
       - name: Test
-        run: make test
+        run: make validate-post-build
