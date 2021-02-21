@@ -1,6 +1,6 @@
 .DEFAULT_GOAL=help
 CMD_DOCKER_EXEC=docker-compose exec app
-CMD_DOCKER_RUN=docker-compose run app
+CMD_DOCKER_RUN=docker run -e APP_ENV=dev -e APP_DEBUG=false -t --rm $(IMAGE_TAG)
 COLOR_NONE="\\033[0m"
 COLOR_BLUE="\\033[34m"
 COLOR_CYAN="\\033[36m"
@@ -8,6 +8,10 @@ COLOR_GREEN="\\033[32m"
 COLOR_YELLOW="\\033[33m"
 COLOR_ORANGE="\\033[43m"
 COLOR_RED="\\033[31m"
+IMAGE_TAG="antonmarin/want2watch:dev"
+
+build:
+	docker build . -t $(IMAGE_TAG)
 
 lint: lint-composer lint-cs lint-dockerfile lint-markdown lint-yaml
 lint-composer:
@@ -27,7 +31,7 @@ lint-yaml:
 fix-cs:
 	docker run --rm -v $(PWD):/data/ -w /data/ oskarstark/php-cs-fixer-ga:2.18.2 --diff --allow-risky=yes
 
-validate-post-build: container composer-require sat
+validate-post-build: build container composer-require sat
 container:
 	$(CMD_DOCKER_RUN) bin/console -n lint:container
 composer-require:

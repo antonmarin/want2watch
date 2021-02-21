@@ -8,6 +8,7 @@ final class Controller
 {
     public function __invoke(Request $request): FoundResponse
     {
-        // TODO: Implement __invoke() method.
+        // TODO: Implement
+        return new FoundResponse();
     }
 }
