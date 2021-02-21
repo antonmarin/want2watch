@@ -1,0 +1,7 @@
+/*.md
+/.git/
+/.gitignore
+/.php_cs*
+/backend.iml
+/docker-compose.yml
+/Makefile
