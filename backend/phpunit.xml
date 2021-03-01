@@ -1,0 +1,8 @@
+<phpunit
+    cacheResult="false">
+    <testsuites>
+        <testsuite name="unit tests">
+            <directory suffix="Test.php">tests/unit/</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
