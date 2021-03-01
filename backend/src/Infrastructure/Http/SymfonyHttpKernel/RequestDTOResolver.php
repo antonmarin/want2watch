@@ -13,10 +13,17 @@ final class RequestDTOResolver implements ArgumentValueResolverInterface
     public function supports(Request $request, ArgumentMetadata $argument): bool
     {
         // TODO: Implement supports() method.
+        return true;
     }
 
-    public function resolve(Request $request, ArgumentMetadata $argument): void
+    /**
+     * @param Request $request
+     * @param ArgumentMetadata $argument
+     * @return string[]
+     */
+    public function resolve(Request $request, ArgumentMetadata $argument): iterable
     {
         // TODO: Implement resolve() method.
+        return [];
     }
 }
