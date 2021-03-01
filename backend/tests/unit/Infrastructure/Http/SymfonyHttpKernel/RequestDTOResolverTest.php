@@ -6,12 +6,13 @@ namespace antonmarin\want2watch\Infrastructure\Http\SymfonyHttpKernel;
 
 use PHPUnit\Framework\TestCase;
 
-class RequestDTOResolverTest extends TestCase
+final class RequestDTOResolverTest extends TestCase
 {
     /**
-     * @test
+     *
      */
-    public function should(): void {
-        self::assertTrue(true);
+    public function testShould(): void
+    {
+        static::assertTrue(true);
     }
 }

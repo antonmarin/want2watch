@@ -10,13 +10,12 @@ use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
 
 final class RequestDTOResolver implements ArgumentValueResolverInterface
 {
-
     public function supports(Request $request, ArgumentMetadata $argument): bool
     {
         // TODO: Implement supports() method.
     }
 
-    public function resolve(Request $request, ArgumentMetadata $argument)
+    public function resolve(Request $request, ArgumentMetadata $argument): void
     {
         // TODO: Implement resolve() method.
     }
