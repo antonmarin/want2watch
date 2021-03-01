@@ -12,4 +12,5 @@ COPY config ./config/
 FROM application as debug
 RUN composer install --no-interaction --no-suggest
 COPY tests ./tests/
+COPY phpunit.xml ./
 COPY phpstan.neon ./
