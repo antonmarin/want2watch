@@ -31,7 +31,7 @@ lint-yaml:
 fix-cs:
 	docker run --rm -v $(PWD):/data/ -w /data/ oskarstark/php-cs-fixer-ga:2.18.2 --diff --allow-risky=yes
 
-validate-post-build: build container composer-require sat
+validate-post-build: container composer-require sat
 container:
 	$(CMD_DOCKER_RUN) bin/console -n lint:container
 composer-require:
@@ -39,7 +39,9 @@ composer-require:
 sat:
 	$(CMD_DOCKER_RUN) vendor/bin/phpstan analyse
 
-#test:
+test: phpunit
+phpunit:
+	$(CMD_DOCKER_RUN) vendor/bin/phpunit --configuration ./phpunit.xml
 
 spec-ui:
 	docker run -p 8092:8080 -e URL=openapi.yml -v $(PWD)/http/specification.yml:/usr/share/nginx/html/openapi.yml swaggerapi/swagger-ui

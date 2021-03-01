@@ -23,4 +23,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
       - name: Post-build validations
-        run: make validate-post-build
+        run: make build validate-post-build test
