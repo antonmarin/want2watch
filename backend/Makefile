@@ -31,7 +31,7 @@ lint-yaml:
 fix-cs:
 	docker run --rm -v $(PWD):/data/ -w /data/ oskarstark/php-cs-fixer-ga:2.18.2 --diff --allow-risky=yes
 
-validate-post-build: container composer-require sat
+validate-post-build: container composer-require sat phpunit
 container:
 	$(CMD_DOCKER_RUN) bin/console -n lint:container
 composer-require:
