@@ -21,6 +21,7 @@ return PhpCsFixer\Config::create()
 
         'multiline_whitespace_before_semicolons' => ['strategy' => 'no_multi_line'],
         'phpdoc_align' => ['align' => 'left'],
+        'self_static_accessor' => true,
 
         // risky
         '@PHP70Migration:risky' => true,

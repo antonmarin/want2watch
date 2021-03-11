@@ -1,5 +1,6 @@
 {
     "name": "antonmarin/want2watch",
+    "description": "Bookmarks for movies and series",
     "type": "project",
     "license": "MIT",
     "authors": [
@@ -15,7 +16,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "antonmarin\\want2watch\\": "tests/unit"
+            "antonmarin\\want2watch\\": "tests/unit",
+            "antonmarin\\want2watch\\tests\\support\\": "tests/_support"
         }
     },
     "config": {
@@ -26,6 +28,7 @@
     "require": {
         "php": "^7.4",
         "ext-zend-opcache": "^7.4",
+        "psr/log": "^1.1",
         "symfony/console": "^5.2",
         "symfony/dependency-injection": "^5.2",
         "symfony/error-handler": "^5.2",
@@ -33,6 +36,7 @@
         "symfony/http-foundation": "^5.2",
         "symfony/http-kernel": "^5.2",
         "symfony/routing": "^5.2",
+        "symfony/validator": "^5.2",
         "symfony/yaml": "^5.2"
     },
     "require-dev": {
