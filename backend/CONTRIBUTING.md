@@ -33,6 +33,8 @@ Are there any not automated code conventions?
 - PHPStan used for SAT
 - CodeStyle is controlled by PHP-CS-Fixer. Run `make lint-cs` to use.
   Also included in `make lint`
+- Describe why @noinspection or @phpstan-ignore-next-line used
+- Describe what to use instead @deprecated
 
 ### Pull request
 
@@ -84,3 +86,4 @@ Where can you identify application failures? How to add monitoring of state inde
 
 - We follow <https://prometheus.io/docs/practices/naming/>
 - No monitoring now
+- Logs begin by uppercase. Try to avoid using parameters in log message, place them in context
