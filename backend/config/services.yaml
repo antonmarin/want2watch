@@ -7,8 +7,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
 
-services:
-    # default configuration for services in *this* file
-    _defaults:
-        autowire: true      # Automatically injects dependencies in your services.
-        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+imports:
+  # paths from ./config
+  - { resource: '../src/Infrastructure/Resources/services.yaml' }
+  - { resource: '../src/Core/Resources/services.yaml' }
