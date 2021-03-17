@@ -4,11 +4,20 @@ declare(strict_types=1);
 
 namespace antonmarin\want2watch\Core\Endpoints\Http\HelloWorld;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Routing\Annotation\Route;
+
 final class Controller
 {
-    public function __invoke(Request $request): FoundResponse
+    /**
+     * @Route("/hello", name="hello_world")
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function __invoke(Request $request): JsonResponse
     {
         // TODO: Implement
-        return new FoundResponse();
+        $response = new FoundResponse('Hello ' . $request->getName());
+        return new JsonResponse($response);
     }
 }
