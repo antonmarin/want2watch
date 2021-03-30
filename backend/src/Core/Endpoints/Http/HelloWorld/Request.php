@@ -24,5 +24,4 @@ final class Request implements RequestDTO
     {
         return $this->name;
     }
-
 }

@@ -7,3 +7,5 @@ parameters:
     paths:
         - src/
     inferPrivatePropertyTypeFromConstructor: true
+    ignoreErrors:
+        - '#Missing @throws LogicException .*#'
