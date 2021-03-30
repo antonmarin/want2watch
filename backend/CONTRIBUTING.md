@@ -16,6 +16,8 @@ requirements:
 
 Are there any not automated documenting conventions?
 
+- Follow [Key words for use](https://www.ietf.org/rfc/rfc2119.txt) in conventions
+
 ### Specification
 
 - Update specification before editing HTTP or message API
@@ -35,6 +37,7 @@ Are there any not automated code conventions?
   Also included in `make lint`
 - Describe why @noinspection or @phpstan-ignore-next-line used
 - Describe what to use instead @deprecated
+- Avoid using @test in unit tests. Naming MUST follow "should_{expected result}_when_{state under test}"
 
 ### Pull request
 
