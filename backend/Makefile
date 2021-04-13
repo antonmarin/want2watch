@@ -1,3 +1,6 @@
+###
+# Sort goals by name asc
+###
 .DEFAULT_GOAL=help
 CMD_DOCKER_EXEC=docker-compose exec app
 CMD_DOCKER_RUN=docker run -e APP_ENV=dev -e APP_DEBUG=false -t --rm $(IMAGE_TAG)
@@ -12,6 +15,20 @@ IMAGE_TAG="antonmarin/want2watch:dev"
 
 build:
 	docker build . -t $(IMAGE_TAG)
+
+help: #? help me
+	@printf "\e[34;01mAvailable targets\033[0m\n"
+	@awk '/^@?[a-zA-Z\-_0-9]+:/ { \
+		nb = sub( /^#\? /, "", helpMsg ); \
+		if(nb == 0) { \
+			helpMsg = $$0; \
+			nb = sub( /^[^:]*:.* #\? /, "", helpMsg ); \
+		} \
+		if (nb) \
+			printf "\033[1;31m%-" width "s\033[0m %s\n", $$1, helpMsg; \
+	} \
+	{ helpMsg = $$0 }' \
+	$(MAKEFILE_LIST) | column -ts:
 
 lint: lint-composer lint-cs lint-dockerfile lint-markdown lint-yaml
 lint-composer:
@@ -43,5 +60,5 @@ test: phpunit
 phpunit:
 	$(CMD_DOCKER_RUN) vendor/bin/phpunit --configuration phpunit.xml
 
-spec-ui:
+spec-ui: #? UI to use specification
 	docker run -p 8092:8080 -e URL=openapi.yml -v $(PWD)/http/specification.yml:/usr/share/nginx/html/openapi.yml swaggerapi/swagger-ui

@@ -6,13 +6,54 @@ info:
 servers:
   - url: http://localhost:8080
 paths:
-  /:
+  /hello:
     get:
+      operationId: HelloWorld
+      parameters:
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
       responses:
         200:
-          description: OK
+          $ref: '#/components/responses/HelloWorld_FoundResponse'
+        400:
+          $ref: '#/components/responses/ClientError'
+        500:
+          $ref: '#/components/responses/ServerError'
 
 components:
+  responses:
+    ClientError:
+      description: Client error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    ServerError:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+
+    HelloWorld_FoundResponse:
+      description: Response found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
   schemas:
     ErrorResponse:
       type: object

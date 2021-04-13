@@ -6,5 +6,7 @@ services:
 
   antonmarin\want2watch\Infrastructure\:
     resource: '../*'
+
+  antonmarin\want2watch\Infrastructure\Http\SymfonyHttpKernel\RequestDTOResolver:
     tags:
       - { name: controller.request_value_resolver, priority: 50 }
