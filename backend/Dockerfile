@@ -9,6 +9,7 @@ FROM application-deps as debug-deps
 RUN composer install --no-interaction --no-suggest
 
 FROM application-deps as application
+ENV PHP_INI_SESSION_USE_COOKIES=0
 COPY bin ./bin/
 COPY public ./public/
 COPY src ./src/

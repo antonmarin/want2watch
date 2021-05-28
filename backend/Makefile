@@ -13,7 +13,7 @@ COLOR_ORANGE="\\033[43m"
 COLOR_RED="\\033[31m"
 IMAGE_TAG="antonmarin/want2watch:dev"
 
-build:
+build: #? build dev image
 	docker build . -t $(IMAGE_TAG)
 
 help: #? help me
@@ -30,7 +30,7 @@ help: #? help me
 	{ helpMsg = $$0 }' \
 	$(MAKEFILE_LIST) | column -ts:
 
-lint: lint-composer lint-cs lint-dockerfile lint-markdown lint-yaml
+lint: lint-composer lint-cs lint-dockerfile lint-markdown lint-yaml #? prebuild validation
 lint-composer:
 	docker run --rm -iv $(PWD):/app/ composer:1.9 validate --no-interaction --no-check-publish --with-dependencies
 	docker run --rm -v $(PWD):/app pplotka/local-php-security-checker-github-actions:v1.0.0
@@ -48,7 +48,7 @@ lint-yaml:
 fix-cs:
 	docker run --rm -v $(PWD):/data/ -w /data/ oskarstark/php-cs-fixer-ga:2.18.2 --diff --allow-risky=yes
 
-validate-post-build: container composer-require sat phpunit
+validate-post-build: container composer-require sat phpunit #? postbuild validation
 container:
 	$(CMD_DOCKER_RUN) bin/console -n lint:container
 composer-require:
