@@ -61,4 +61,5 @@ phpunit:
 	$(CMD_DOCKER_RUN) vendor/bin/phpunit --configuration phpunit.xml
 
 spec-ui: #? UI to use specification
-	docker run -p 8092:8080 -e URL=openapi.yml -v $(PWD)/http/specification.yml:/usr/share/nginx/html/openapi.yml swaggerapi/swagger-ui
+	docker run --name swaggerui-want2watch -d -p 8092:8080 -e URL=openapi.yml -v $(PWD)/http/specification.yml:/usr/share/nginx/html/openapi.yml swaggerapi/swagger-ui
+	open http://localhost:8092
