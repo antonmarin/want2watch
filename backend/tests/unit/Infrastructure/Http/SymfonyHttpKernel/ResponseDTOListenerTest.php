@@ -49,7 +49,10 @@ final class ResponseDTOListenerTest extends TestCase
         self::assertInstanceOf(Response::class, $response);
         assertEquals(json_encode($responseDTO, JSON_THROW_ON_ERROR), $response->getContent());
         assertEquals(Response::HTTP_CREATED, $response->getStatusCode());
-        assertEquals(new ResponseHeaderBag(['Content-Type' => 'text/javascript']), $response->headers);
+        assertEquals(
+            new ResponseHeaderBag(['Content-Type' => DTOConvertableToBody::HEADER_TEXT_JAVASCRIPT]),
+            $response->headers
+        );
     }
 
     public function testShouldExceptionWhenDTONotImplementRequired(): void
@@ -142,6 +145,7 @@ final class NotSerializable implements ResponseDTO
 
 final class DTOConvertableToBody implements ResponseDTO
 {
+    public const HEADER_TEXT_JAVASCRIPT = 'text/javascript';
     private string $message = 'Some message';
 
     public function jsonSerialize(): array
@@ -157,7 +161,7 @@ final class DTOConvertableToBody implements ResponseDTO
     public function getHeaders(): array
     {
         return [
-            'Content-Type' => 'text/javascript',
+            'Content-Type' => self::HEADER_TEXT_JAVASCRIPT,
         ];
     }
 }
