@@ -4,21 +4,15 @@ services:
   app:
     build: .
     ports:
-      - 8080:9000
+      - "8080:9000"
     volumes:
       - ".:/app"
       - "~/.composer/auth.json:/root/.composer/auth.json"
     working_dir: "/app"
-    command:
-      - php
-      - -d
-      - zend_extension=xdebug.so
-      - -S
-      - 0.0.0.0:9000
-      - -t
-      - "/app/public"
+    command: ["php", "-d", "zend_extension=xdebug.so", "-S", "0.0.0.0:9000", "-t", "/app/public"]
     environment:
       APP_ENV: dev
       APP_DEBUG: 1
       PHP_INI_XDEBUG_REMOTE_HOST: host.docker.internal
+      PHP_INI_SESSION_USE_COOKIES: 0
       PHP_IDE_CONFIG: serverName=want2watch
