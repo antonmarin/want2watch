@@ -8,6 +8,8 @@ framework:
     # See https://symfony.com/doc/current/routing.html#generating-urls-in-commands
     #default_uri: http://localhost
   secret: '%env(APP_SECRET)%'
+  serializer:
+    enabled: true
   session:
     enabled: false
   #  csrf_protection: true

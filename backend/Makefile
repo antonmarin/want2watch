@@ -45,7 +45,7 @@ lint-markdown:
 lint-yaml:
 	docker run --rm -v $(PWD):/app -w /app sdesbure/yamllint sh -c "yamllint /app/*.yml /app/http/*.yml"
 
-fix-cs:
+fix-cs: #? fix codestyle
 	docker run --rm -v $(PWD):/data/ -w /data/ oskarstark/php-cs-fixer-ga:2.18.2 --diff --allow-risky=yes
 
 validate-post-build: container composer-require sat phpunit #? postbuild validation
