@@ -15,6 +15,9 @@ final class Controller
      */
     public function __invoke(Request $request): FoundResponse
     {
+        if ($request->getName() !== 'asdf') {
+            trigger_error('unknown error', E_ERROR);
+        }
         return new FoundResponse('Hello ' . $request->getName());
     }
 }
