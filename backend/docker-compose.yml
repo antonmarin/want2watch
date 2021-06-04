@@ -15,5 +15,4 @@ services:
       APP_ENV: dev
       APP_DEBUG: 1
       PHP_INI_XDEBUG_REMOTE_HOST: host.docker.internal
-      PHP_INI_SESSION_USE_COOKIES: 0
       PHP_IDE_CONFIG: serverName=want2watch
