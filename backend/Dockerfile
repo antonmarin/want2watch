@@ -14,8 +14,10 @@ COPY bin ./bin/
 COPY public ./public/
 COPY src ./src/
 COPY config ./config/
+RUN bin/console cache:warmup --no-debug -e prod
 
 FROM application as debug
 COPY --from=debug-deps /app/vendor ./vendor/
 COPY tests ./tests/
 COPY phpstan.neon phpunit.xml ./
+RUN bin/console cache:warmup -e test

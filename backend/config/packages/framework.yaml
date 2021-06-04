@@ -1,36 +1,31 @@
 # see https://symfony.com/doc/current/reference/configuration/framework.html
 framework:
+  csrf_protection: false
+  default_locale: en
+  form:
+    enabled: false
+  http_method_override: false
+  php_errors:
+    log: true
+    throw: true
+  property_access:
+    magic_get: false
+    magic_set: false
+    throw_exception_on_invalid_index: true
+  property_info:
+    enabled: false
   router:
-    strict_requirements: null
-    utf8: true
-
     # Configure how to generate URLs in non-HTTP contexts, such as CLI commands.
     # See https://symfony.com/doc/current/routing.html#generating-urls-in-commands
     #default_uri: http://localhost
+    strict_requirements: null
+    utf8: true
   secret: '%env(APP_SECRET)%'
   serializer:
     enabled: true
   session:
     enabled: false
-  #  csrf_protection: true
-  #http_method_override: true
-
-  #esi: true
-  #fragments: true
-  php_errors:
-    log: true
-  #cache:
-    # Unique name of your app: used to compute stable namespaces for cache keys.
-    #prefix_seed: your_vendor_name/app_name
-
-    # The "app" cache stores to the filesystem by default.
-    # The data in this cache should persist between deploys.
-    # Other options include:
-
-    # Redis
-    #app: cache.adapter.redis
-    #default_redis_provider: redis://localhost
-
-    # Namespaced pools use the above "app" backend by default
-    #pools:
-    #my.dedicated.cache: null
+  translator:
+    enabled: false
+  validation:
+    enabled: true
