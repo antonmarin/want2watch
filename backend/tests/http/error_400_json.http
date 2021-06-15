@@ -1,7 +1,0 @@
-GET {{hostname}}/index.php/_error/400.json
-Accept: application/json
-
-###
-
-GET {{hostname}}/hello
-Accept: application/json

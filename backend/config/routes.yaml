@@ -3,7 +3,7 @@ controllers:
   type: annotation
 
 kernel:
-  resource: ../src/Core/Kernel.php
+  resource: ../src/Infrastructure/IoC/Symfony/Kernel.php
   type: annotation
 
 _errors:

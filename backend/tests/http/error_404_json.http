@@ -1,2 +1,0 @@
-GET {{hostname}}/not_existed_route
-Accept: application/json

@@ -15,7 +15,12 @@ IMAGE_TAG="antonmarin/want2watch:dev"
 
 build: #? build dev image
 	docker build . -t $(IMAGE_TAG)
-
+composer-require:
+	$(CMD_DOCKER_RUN) bin/composer-require-checker.phar check /app/composer.json
+container:
+	$(CMD_DOCKER_RUN) bin/console -n lint:container
+fix-cs: #? fix codestyle
+	docker run --rm -v $(PWD):/data/ -w /data/ oskarstark/php-cs-fixer-ga:2.18.2 --diff --allow-risky=yes
 help: #? help me
 	@printf "\e[34;01mAvailable targets\033[0m\n"
 	@awk '/^@?[a-zA-Z\-_0-9]+:/ { \
@@ -45,21 +50,12 @@ lint-markdown:
 lint-yaml:
 	docker run --rm -v $(PWD):/app -w /app sdesbure/yamllint sh -c "yamllint /app/*.yml /app/http/*.yml"
 
-fix-cs: #? fix codestyle
-	docker run --rm -v $(PWD):/data/ -w /data/ oskarstark/php-cs-fixer-ga:2.18.2 --diff --allow-risky=yes
-
-validate-post-build: container composer-require sat phpunit #? postbuild validation
-container:
-	$(CMD_DOCKER_RUN) bin/console -n lint:container
-composer-require:
-	$(CMD_DOCKER_RUN) bin/composer-require-checker.phar check /app/composer.json
-sat:
-	$(CMD_DOCKER_RUN) vendor/bin/phpstan analyse
-
-test: phpunit
 phpunit:
 	$(CMD_DOCKER_RUN) vendor/bin/phpunit --configuration phpunit.xml
-
+pipe: lint build validate-post-build #? behavior similar to CI pipeline
+sat:
+	$(CMD_DOCKER_RUN) vendor/bin/phpstan analyse
 spec-ui: #? UI to use specification
 	docker run --name swaggerui-want2watch -d -p 8092:8080 -e URL=openapi.yml -v $(PWD)/http/specification.yml:/usr/share/nginx/html/openapi.yml swaggerapi/swagger-ui
 	open http://localhost:8092
+validate-post-build: container composer-require sat phpunit #? postbuild validation

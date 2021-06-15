@@ -60,7 +60,6 @@ final class RequestDTOResolver implements ArgumentValueResolverInterface
             $errorString .= $violation . "\n";
         }
         if ($errorString !== '') {
-            /** @phpstan-ignore-next-line Symfony doesn't allow to change behavior */
             throw new BadRequestHttpException($errorString);
         }
 
