@@ -1,0 +1,24 @@
+### 400
+
+GET {{hostname}}/index.php/_error/400.json
+Accept: application/json
+
+###
+
+GET {{hostname}}/hello
+Accept: application/json
+
+### 404
+
+GET {{hostname}}/not_existed_route
+Accept: application/json
+
+### 500
+
+GET {{hostname}}/index.php/_error/500.json
+Accept: application/json
+
+###
+
+GET {{hostname}}/hello?name=a
+Accept: application/json
