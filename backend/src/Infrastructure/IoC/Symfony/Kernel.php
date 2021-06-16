@@ -55,9 +55,9 @@ final class Kernel extends BaseKernel implements CompilerPassInterface
             (new Definition(
                 ErrorListener::class,
                 [
-                    param('kernel.error_controller'),
+                    (string) param('kernel.error_controller'),
                     new Reference($criticalLoggerId),
-                    param('kernel.debug'),
+                    (string) param('kernel.debug'),
                 ]
             ))
                 ->addTag('kernel.event_subscriber')
