@@ -10,3 +10,12 @@ services:
   antonmarin\want2watch\Infrastructure\Http\SymfonyHttpKernel\RequestDTOResolver:
     tags:
       - { name: controller.request_value_resolver, priority: 50 }
+
+  logger.critical:
+    class: Symfony\Component\HttpKernel\Log\Logger
+    arguments:
+      - !php/const Psr\Log\LogLevel::CRITICAL
+  logger.notice:
+    class: Symfony\Component\HttpKernel\Log\Logger
+    arguments:
+      - !php/const Psr\Log\LogLevel::NOTICE
