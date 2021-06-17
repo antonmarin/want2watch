@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace antonmarin\want2watch\Infrastructure\IoC\Symfony;
 
-use Psr\Log\LogLevel;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -12,8 +11,8 @@ use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\EventListener\ErrorListener;
+use Symfony\Component\HttpKernel\EventListener\RouterListener;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
-use Symfony\Component\HttpKernel\Log\Logger;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
 use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
@@ -46,18 +45,31 @@ final class Kernel extends BaseKernel implements CompilerPassInterface
 
     public function process(ContainerBuilder $container): void
     {
-        $criticalLoggerId = 'logger.critical';
-        $container->setDefinition($criticalLoggerId, new Definition(Logger::class, [LogLevel::CRITICAL]));
-        $exceptionListenerId = 'exception_listener';
-        $container->removeDefinition($exceptionListenerId);
         $container->setDefinition(
-            $exceptionListenerId,
+            'exception_listener',
             (new Definition(
                 ErrorListener::class,
                 [
-                    (string) param('kernel.error_controller'),
-                    new Reference($criticalLoggerId),
-                    (string) param('kernel.debug'),
+                    (string)param('kernel.error_controller'),
+                    new Reference($this->isDebug() ? 'logger' : 'logger.critical'),
+                    (string)param('kernel.debug'),
+                ]
+            ))
+                ->addTag('kernel.event_subscriber')
+                ->addTag('monolog.logger', ['channel' => 'request'])
+        );
+
+        $container->setDefinition(
+            'router_listener',
+            (new Definition(
+                RouterListener::class,
+                [
+                    new Reference('router'),
+                    new Reference('request_stack'),
+                    new Reference('router.request_context'),
+                    new Reference($this->isDebug() ? 'logger' : 'logger.notice'),
+                    (string)param('kernel.project_dir'),
+                    (string)param('kernel.debug'),
                 ]
             ))
                 ->addTag('kernel.event_subscriber')
