@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "18ecba37367ae0c73f13c5e7738b8223",
+    "content-hash": "8368adff1f67e202f0ee4a1ca53070df",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1311,16 +1311,16 @@
         },
         {
             "name": "symfony/framework-bundle",
-            "version": "v5.3.0",
+            "version": "5.3.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/framework-bundle.git",
-                "reference": "99196372c703b8cc97ee61d63d98acbf9896d425"
+                "reference": "6552a80885bc409c883769f26ee4085af431bffb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/framework-bundle/zipball/99196372c703b8cc97ee61d63d98acbf9896d425",
-                "reference": "99196372c703b8cc97ee61d63d98acbf9896d425",
+                "url": "https://api.github.com/repos/symfony/framework-bundle/zipball/6552a80885bc409c883769f26ee4085af431bffb",
+                "reference": "6552a80885bc409c883769f26ee4085af431bffb",
                 "shasum": ""
             },
             "require": {
@@ -1487,7 +1487,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-31T10:12:54+00:00"
+            "time": "2021-06-16T09:10:20+00:00"
         },
         {
             "name": "symfony/http-client-contracts",
@@ -5556,6 +5556,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "symfony/framework-bundle": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": false,
