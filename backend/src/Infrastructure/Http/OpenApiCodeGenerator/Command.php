@@ -26,10 +26,15 @@ final class Command extends \Symfony\Component\Console\Command\Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln('Generating entrypoints from ' . $this->specificationPath);
-        $specification = new Specification(realpath($this->specificationPath));
-        $specification->generateCode();
+        $specification = new Specification($this->specificationPath);
+        try {
+            $specification->generateCode();
 
-        return self::SUCCESS;
+            return self::SUCCESS;
+        } catch (SpecificationException $e) {
+            $output->writeln('Error reading specification: ' . $e->getMessage());
+        }
+
+        return self::FAILURE;
     }
-
 }
