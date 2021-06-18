@@ -11,6 +11,10 @@ services:
     tags:
       - { name: controller.request_value_resolver, priority: 50 }
 
+  antonmarin\want2watch\Infrastructure\Http\OpenApiDtoGenerator\Command:
+    arguments:
+      - '%kernel.project_dir%/http/specification.yml'
+
   logger.critical:
     class: Symfony\Component\HttpKernel\Log\Logger
     arguments:
