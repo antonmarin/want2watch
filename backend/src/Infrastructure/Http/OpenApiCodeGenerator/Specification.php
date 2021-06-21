@@ -11,40 +11,40 @@ use cebe\openapi\Reader;
 
 final class Specification
 {
-    private string $specificationPath;
+    private NetteGenerator $generator;
 
-    public function __construct(string $specificationPath)
+    public function __construct(NetteGenerator $generator)
     {
-        $this->specificationPath = $specificationPath;
+        $this->generator = $generator;
     }
 
     /**
      * @throws SpecificationException when any error reading, parsing or validating specification
      */
-    public function generateCode(): void
+    public function generateCode(string $specificationPath): void
     {
-        $realPath = realpath($this->specificationPath);
+        $realPath = realpath($specificationPath);
         if ($realPath === false) {
-            throw new SpecificationException('Not existed specification file ' . $this->specificationPath);
+            throw new SpecificationException('Not existed specification file ' . $specificationPath);
         }
 
         try {
             $openapi = Reader::readFromYamlFile($realPath);
         } catch (IOException $e) {
             throw new SpecificationException(
-                'Error reading specification file ' . $this->specificationPath,
+                'Error reading specification file ' . $specificationPath,
                 0,
                 $e
             );
         } catch (TypeErrorException $e) {
             throw new SpecificationException(
-                'Error in specification ' . $this->specificationPath,
+                'Error in specification ' . $specificationPath,
                 0,
                 $e
             );
         } catch (UnresolvableReferenceException $e) {
             throw new SpecificationException(
-                'Error resolving reference in specification' . $this->specificationPath,
+                'Error resolving reference in specification' . $specificationPath,
                 0,
                 $e
             );
@@ -53,8 +53,10 @@ final class Specification
         if ($openapi->validate() === false) {
             $errors = implode(';', $openapi->getErrors());
             throw new SpecificationException(
-                'Validation errors in specification' . $this->specificationPath . ':' . $errors
+                'Validation errors in specification' . $specificationPath . ':' . $errors
             );
         }
+
+        $this->generator->generate($openapi);
     }
 }

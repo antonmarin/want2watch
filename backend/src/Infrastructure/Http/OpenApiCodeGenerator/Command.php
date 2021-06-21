@@ -11,10 +11,14 @@ final class Command extends \Symfony\Component\Console\Command\Command
 {
     protected static $defaultName = 'openapi:generate';
     private string $specificationPath;
+    private Specification $specification;
 
-    public function __construct(string $specificationPath)
-    {
+    public function __construct(
+        string $specificationPath,
+        Specification $specification
+    ) {
         $this->specificationPath = $specificationPath;
+        $this->specification = $specification;
         parent::__construct();
     }
 
@@ -26,9 +30,8 @@ final class Command extends \Symfony\Component\Console\Command\Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln('Generating entrypoints from ' . $this->specificationPath);
-        $specification = new Specification($this->specificationPath);
         try {
-            $specification->generateCode();
+            $this->specification->generateCode($this->specificationPath);
 
             return self::SUCCESS;
         } catch (SpecificationException $e) {

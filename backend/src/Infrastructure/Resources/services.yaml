@@ -15,6 +15,11 @@ services:
     arguments:
       - '%kernel.project_dir%/http/specification.yml'
 
+  antonmarin\want2watch\Infrastructure\Http\OpenApiCodeGenerator\NetteGenerator:
+    arguments:
+      - '%kernel.project_dir%/src/Core/Endpoints/Http'
+      - 'antonmarin\want2watch\Core\Endpoints\Http'
+
   logger.critical:
     class: Symfony\Component\HttpKernel\Log\Logger
     arguments:
@@ -23,3 +28,11 @@ services:
     class: Symfony\Component\HttpKernel\Log\Logger
     arguments:
       - !php/const Psr\Log\LogLevel::NOTICE
+  logger.info:
+    class: Symfony\Component\HttpKernel\Log\Logger
+    arguments:
+      - !php/const Psr\Log\LogLevel::INFO
+  logger.debug:
+    class: Symfony\Component\HttpKernel\Log\Logger
+    arguments:
+      - !php/const Psr\Log\LogLevel::DEBUG
