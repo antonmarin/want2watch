@@ -24,7 +24,10 @@ final class RequestDTOResolverTest extends TestCase
         $this->logger = new TestLogger();
     }
 
-    public function testShouldSupportWhenDTOImplementRequiredContract(): void
+    /**
+     * @test
+     */
+    public function shouldSupportWhenDTOImplementRequiredContract(): void
     {
         $resolver = new RequestDTOResolver($this->createMock(ValidatorInterface::class), $this->logger);
         $argument = $this->createMock(ArgumentMetadata::class);
@@ -37,7 +40,10 @@ final class RequestDTOResolverTest extends TestCase
         );
     }
 
-    public function testShouldNotSupportWhenDTONotImplementRequiredContract(): void
+    /**
+     * @test
+     */
+    public function shouldNotSupportWhenDTONotImplementRequiredContract(): void
     {
         $resolver = new RequestDTOResolver($this->createMock(ValidatorInterface::class), $this->logger);
         $argument = $this->createMock(ArgumentMetadata::class);
@@ -50,7 +56,10 @@ final class RequestDTOResolverTest extends TestCase
         );
     }
 
-    public function testShouldCreateResolvedWhenRequestIsValid(): void
+    /**
+     * @test
+     */
+    public function shouldCreateResolvedWhenRequestIsValid(): void
     {
         $validator = $this->createMock(ValidatorInterface::class);
         $validator->method('validate')->willReturn([]);
@@ -66,7 +75,10 @@ final class RequestDTOResolverTest extends TestCase
         self::assertInstanceOf(TestRequestDTO::class, $dto);
     }
 
-    public function testShouldThrowBadRequestExceptionWhenRequestIsNotValid(): void
+    /**
+     * @test
+     */
+    public function shouldThrowBadRequestExceptionWhenRequestIsNotValid(): void
     {
         $validator = $this->createMock(ValidatorInterface::class);
         $requestErrors = new ConstraintViolationList();

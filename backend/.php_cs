@@ -36,5 +36,6 @@ return PhpCsFixer\Config::create()
         '@PHP80Migration:risky' => true,
         '@PhpCsFixer:risky' => true,
         'final_class' => true,
+        'php_unit_test_annotation' => ['style' => 'annotation']
     ])
     ->setRiskyAllowed(false);

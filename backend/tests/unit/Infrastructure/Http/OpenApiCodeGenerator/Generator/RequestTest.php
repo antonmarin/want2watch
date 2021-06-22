@@ -12,7 +12,7 @@ use cebe\openapi\spec\Operation;
 use Nette\PhpGenerator\PhpNamespace;
 use PHPUnit\Framework\TestCase;
 
-class RequestTest extends TestCase
+final class RequestTest extends TestCase
 {
     private const REQUIRED_STRING_IN_QUERY = '<?php
 
@@ -44,21 +44,20 @@ final class Request implements RequestDTO
 ';
 
     /** @test */
-    public function should_return_valid_file_string(): void
+    public function shouldReturnValidFileString(): void
     {
         $generator = new Request();
         /** @var $operation Operation */
         $operation = Reader::readFromYaml(
             <<<'YAML'
-operationId: HelloWorld
-parameters:
-- name: name
-  in: query
-  required: true
-  schema:
-    type: string
-YAML
-            ,
+                operationId: HelloWorld
+                parameters:
+                - name: name
+                  in: query
+                  required: true
+                  schema:
+                    type: string
+                YAML,
             Operation::class
         );
 
@@ -67,6 +66,6 @@ YAML
             new PhpNamespace('antonmarin\want2watch\Core\Endpoints\Http\HelloWorld')
         );
 
-        self::assertEquals(self::REQUIRED_STRING_IN_QUERY, $fileString);
+        self::assertSame(self::REQUIRED_STRING_IN_QUERY, $fileString);
     }
 }
