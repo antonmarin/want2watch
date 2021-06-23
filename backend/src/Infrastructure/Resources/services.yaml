@@ -7,10 +7,6 @@ services:
   antonmarin\want2watch\Infrastructure\:
     resource: '../*'
 
-  antonmarin\want2watch\Infrastructure\Http\SymfonyHttpKernel\RequestDTOResolver:
-    tags:
-      - { name: controller.request_value_resolver, priority: 50 }
-
   antonmarin\want2watch\Infrastructure\Http\OpenApiCodeGenerator\Command:
     arguments:
       - '%kernel.project_dir%/http/specification.yml'
@@ -19,6 +15,10 @@ services:
     arguments:
       - '%kernel.project_dir%/src/Core/Endpoints/Http'
       - 'antonmarin\want2watch\Core\Endpoints\Http'
+
+  antonmarin\want2watch\Infrastructure\Http\SymfonyHttpKernel\RequestDTOResolver:
+    tags:
+      - { name: controller.request_value_resolver, priority: 50 }
 
   logger.critical:
     class: Symfony\Component\HttpKernel\Log\Logger

@@ -44,7 +44,7 @@ final class Request implements RequestDTO
 ';
 
     /** @test */
-    public function shouldReturnValidFileString(): void
+    public function shouldReturnClassWithConstructorGetterAndPropertyWhenRequiredStringInQuery(): void
     {
         $generator = new Request();
         /** @var $operation Operation */
