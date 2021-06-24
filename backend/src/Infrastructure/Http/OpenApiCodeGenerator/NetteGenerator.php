@@ -73,19 +73,22 @@ final class NetteGenerator
             $this->requestGenerator->generateFile($operation, $operationNamespace)
         );
 
-        foreach ($operation->responses as $statusCode => $response) {
-            if (preg_match($this->responseCodesToGenerateRegEx, (string) $statusCode) !== 1) {
-                continue;
+        if ($operation->responses !== null) {
+            foreach ($operation->responses as $statusCode => $response) {
+                if (preg_match($this->responseCodesToGenerateRegEx, (string)$statusCode) !== 1) {
+                    continue;
+                }
+                file_put_contents(
+                    $codePath . "/Response$statusCode.php",
+                    $this->responseGenerator->generateFile($response, $statusCode, $operationNamespace)
+                );
             }
-            file_put_contents(
-                $codePath . "/Response$statusCode.php",
-                $this->responseGenerator->generateFile($response, $statusCode, $operationNamespace)
-            );
         }
 
         $controllerFilename = $codePath . '/Controller.php';
         if (file_exists($controllerFilename)) {
-            $this->logger->debug('Controller {file} generation skipped as file exists', ['file' => $controllerFilename]);
+            $this->logger->debug('Controller {file} generation skipped as file exists', ['file' => $controllerFilename]
+            );
         } else {
             file_put_contents(
                 $controllerFilename,
