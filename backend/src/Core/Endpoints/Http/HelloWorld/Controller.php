@@ -11,13 +11,13 @@ final class Controller
     /**
      * @Route("/hello", name="HelloWorld")
      * @param Request $request
-     * @return FoundResponse
+     * @return Response200
      */
-    public function __invoke(Request $request): FoundResponse
+    public function __invoke(Request $request): Response200
     {
         if ($request->getName() !== 'asdf') {
             trigger_error('unknown error', E_ERROR);
         }
-        return new FoundResponse('Hello ' . $request->getName());
+        return new Response200('Hello ' . $request->getName());
     }
 }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace antonmarin\want2watch\Infrastructure\Http\OpenApiCodeGenerator;
 
 use antonmarin\want2watch\Infrastructure\Http\OpenApiCodeGenerator\Generator\Request;
+use antonmarin\want2watch\Infrastructure\Http\OpenApiCodeGenerator\Generator\Response;
 use cebe\openapi\spec\OpenApi;
 use cebe\openapi\spec\Operation;
 use cebe\openapi\spec\PathItem;
@@ -15,6 +16,8 @@ final class NetteGenerator
 {
     private LoggerInterface $logger;
     private Request $requestGenerator;
+    private Response $responseGenerator;
+    private string $responseCodesToGenerateRegEx = '/20\d/';
     private string $basePath;
     private string $baseNamespace;
 
@@ -22,6 +25,8 @@ final class NetteGenerator
     {
         $this->logger = $logger;
         $this->requestGenerator = new Request();
+        $this->responseGenerator = new Response();
+
         // todo redo?
         // this should be dynamically as spec may declare multiple contexts
         // or every context should have separated specification?
@@ -63,5 +68,15 @@ final class NetteGenerator
             $codePath . '/Request.php',
             $this->requestGenerator->generateFile($operation, $operationNamespace)
         );
+        foreach ($operation->responses as $statusCode => $response) {
+            if (preg_match($this->responseCodesToGenerateRegEx, (string) $statusCode) !== 1) {
+                continue;
+            }
+            file_put_contents(
+                $codePath . "/Response$statusCode.php",
+                $this->responseGenerator->generateFile($response, $statusCode, $operationNamespace)
+            );
+        }
+        // todo add generate controller here
     }
 }

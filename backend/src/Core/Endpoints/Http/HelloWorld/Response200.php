@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace antonmarin\want2watch\Core\Endpoints\Http\HelloWorld;
 
 use antonmarin\want2watch\Infrastructure\Http\SymfonyHttpKernel\ResponseDTO;
-use Symfony\Component\HttpFoundation\Response;
 
-final class FoundResponse implements ResponseDTO
+final class Response200 implements ResponseDTO
 {
     private string $message;
 
@@ -29,7 +28,7 @@ final class FoundResponse implements ResponseDTO
 
     public function getStatus(): int
     {
-        return Response::HTTP_OK;
+        return 200;
     }
 
     public function getHeaders(): array
