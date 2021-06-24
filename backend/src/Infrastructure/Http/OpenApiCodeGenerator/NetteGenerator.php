@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace antonmarin\want2watch\Infrastructure\Http\OpenApiCodeGenerator;
 
+use antonmarin\want2watch\Infrastructure\Http\OpenApiCodeGenerator\Generator\Controller;
 use antonmarin\want2watch\Infrastructure\Http\OpenApiCodeGenerator\Generator\Request;
 use antonmarin\want2watch\Infrastructure\Http\OpenApiCodeGenerator\Generator\Response;
 use cebe\openapi\spec\OpenApi;
@@ -17,6 +18,7 @@ final class NetteGenerator
     private LoggerInterface $logger;
     private Request $requestGenerator;
     private Response $responseGenerator;
+    private Controller $controllerGenerator;
     private string $responseCodesToGenerateRegEx = '/20\d/';
     private string $basePath;
     private string $baseNamespace;
@@ -26,6 +28,7 @@ final class NetteGenerator
         $this->logger = $logger;
         $this->requestGenerator = new Request();
         $this->responseGenerator = new Response();
+        $this->controllerGenerator = new Controller();
 
         // todo redo?
         // this should be dynamically as spec may declare multiple contexts
@@ -64,10 +67,12 @@ final class NetteGenerator
                 'codePath' => $codePath,
             ]
         );
+
         file_put_contents(
             $codePath . '/Request.php',
             $this->requestGenerator->generateFile($operation, $operationNamespace)
         );
+
         foreach ($operation->responses as $statusCode => $response) {
             if (preg_match($this->responseCodesToGenerateRegEx, (string) $statusCode) !== 1) {
                 continue;
@@ -77,6 +82,15 @@ final class NetteGenerator
                 $this->responseGenerator->generateFile($response, $statusCode, $operationNamespace)
             );
         }
-        // todo add generate controller here
+
+        $controllerFilename = $codePath . '/Controller.php';
+        if (file_exists($controllerFilename)) {
+            $this->logger->debug('Controller {file} generation skipped as file exists', ['file' => $controllerFilename]);
+        } else {
+            file_put_contents(
+                $controllerFilename,
+                $this->controllerGenerator->generateFile($operation, $operationPath, $operationNamespace)
+            );
+        }
     }
 }
