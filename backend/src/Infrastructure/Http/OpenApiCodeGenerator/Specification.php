@@ -50,6 +50,12 @@ final class Specification
             );
         }
 
+        try {
+            $openapi->resolveReferences();
+        } catch (UnresolvableReferenceException $e) {
+            throw new SpecificationException('Specification has unresolvable references', 0, $e);
+        }
+
         if ($openapi->validate() === false) {
             $errors = implode(';', $openapi->getErrors());
             throw new SpecificationException(
