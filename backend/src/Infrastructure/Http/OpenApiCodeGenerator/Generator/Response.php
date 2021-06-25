@@ -5,18 +5,25 @@ declare(strict_types=1);
 namespace antonmarin\want2watch\Infrastructure\Http\OpenApiCodeGenerator\Generator;
 
 use antonmarin\want2watch\Infrastructure\Http\SymfonyHttpKernel\ResponseDTO;
+use cebe\openapi\spec\MediaType;
+use cebe\openapi\spec\Schema;
 use Nette\PhpGenerator\PhpFile;
 use Nette\PhpGenerator\PhpNamespace;
 use Nette\PhpGenerator\Printer;
 use Nette\PhpGenerator\PsrPrinter;
+use Psr\Log\LoggerInterface;
+
+use function get_class;
 
 final class Response
 {
     private Printer $printer;
+    private LoggerInterface $logger;
 
-    public function __construct()
+    public function __construct(LoggerInterface $logger)
     {
         $this->printer = new PsrPrinter();
+        $this->logger = $logger;
     }
 
     public function generateFile(
@@ -36,12 +43,30 @@ final class Response
         $serializer->addComment('{@inheritdoc}')->addComment('@return array<string,string>');
         $serializer->addBody('return [');
         $contentType = 'application/json';
-        foreach ($response->content[$contentType]->schema->properties as $propertyName => $property) {
-            $class->addProperty($propertyName)->setPrivate()->setType($property->type);
-            $constructor->addParameter($propertyName)->setType($property->type);
-            $constructor->addBody('$this->? = $?;', [$propertyName,$propertyName]);
-            $serializer->addBody('    ? => $this->?,', [$propertyName,$propertyName]);
+        $mediaType = $response->content[$contentType];
+        if ($mediaType instanceof MediaType) {
+            $schema = $mediaType->schema;
+            if ($schema instanceof Schema) {
+                foreach ($schema->properties as $propertyName => $property) {
+                    if ($property instanceof Schema) {
+                        $class->addProperty($propertyName)->setPrivate()->setType($property->type);
+                        $constructor->addParameter($propertyName)->setType($property->type);
+                        $constructor->addBody('$this->? = $?;', [$propertyName, $propertyName]);
+                        $serializer->addBody('    ? => $this->?,', [$propertyName, $propertyName]);
+                    } else {
+                        $this->logger->debug('Property type is not Schema', ['propertyType' => get_class($property)]);
+                    }
+                }
+            } else {
+                $this->logger->debug(
+                    'Schema is not type of Schema',
+                    ['schemaType' => $schema === null ? null : get_class($schema)]
+                );
+            }
+        } else {
+            $this->logger->debug('Content media type is not MediaType', ['mediaType' => get_class($mediaType)]);
         }
+
         $serializer->addBody('];');
         $class->addMethod('getStatus')
             ->setReturnType('int')

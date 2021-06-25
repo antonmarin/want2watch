@@ -8,6 +8,7 @@ use cebe\openapi\Reader;
 use cebe\openapi\spec\Responses;
 use Nette\PhpGenerator\PhpNamespace;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\NullLogger;
 
 final class ResponseTest extends TestCase
 {
@@ -53,7 +54,7 @@ final class Response200 implements ResponseDTO
     /** @test */
     public function shouldReturnWhen(): void
     {
-        $generator = new Response();
+        $generator = new Response(new NullLogger());
         /** @var $responses Responses */
         $responses = Reader::readFromYaml(<<<'YAML'
             200:

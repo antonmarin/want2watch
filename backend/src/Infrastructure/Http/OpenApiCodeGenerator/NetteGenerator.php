@@ -27,7 +27,7 @@ final class NetteGenerator
     {
         $this->logger = $logger;
         $this->requestGenerator = new Request();
-        $this->responseGenerator = new Response();
+        $this->responseGenerator = new Response($logger);
         $this->controllerGenerator = new Controller();
 
         // todo redo?
