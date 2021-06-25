@@ -6,6 +6,8 @@ namespace antonmarin\want2watch\Infrastructure\Http\OpenApiCodeGenerator\Generat
 
 use antonmarin\want2watch\Infrastructure\Http\SymfonyHttpKernel\RequestDTO;
 use cebe\openapi\spec\Operation;
+use cebe\openapi\spec\Parameter;
+use cebe\openapi\spec\Schema;
 use Nette\PhpGenerator\PhpFile;
 use Nette\PhpGenerator\PhpNamespace;
 use Nette\PhpGenerator\Printer;
@@ -35,27 +37,30 @@ final class Request
             ->addImplement(RequestDTO::class);
         $constructor = $class->addMethod('__construct');
         $constructor->addParameter('request')->setType(\Symfony\Component\HttpFoundation\Request::class);
+        /** @var Parameter $parameter */
         foreach ($operation->parameters as $parameter) {
+            /** @var Schema $schema */
+            $schema = $parameter->schema;
             $property = $class->addProperty($parameter->name)
                 ->setPrivate()
-                ->setType($parameter->schema->type)
-                ->addComment(strtr('@var *type*', ['*type*' => $parameter->schema->type]));
+                ->setType($schema->type)
+                ->addComment(strtr('@var *type*', ['*type*' => $schema->type]));
             if ($parameter->required) {
                 $property->addComment(
                     strtr(
                         '@Assert\NotBlank()',
-                        ['*assert*' => $this->blankableRequired($parameter->schema->type) ? 'Blank' : 'Null']
+                        ['*assert*' => $this->blankableRequired($schema->type) ? 'Blank' : 'Null']
                     )
                 );
             }
             $constructor->addBody(
                 strtr(
                     '$this->{propertyName} = ({type}) $request->query->get(\'{propertyName}\');',
-                    ['{propertyName}' => $property->getName(), '{type}' => $parameter->schema->type]
+                    ['{propertyName}' => $property->getName(), '{type}' => $schema->type]
                 )
             );
             $class->addMethod('get' . ucwords($parameter->name))
-                ->setReturnType($parameter->schema->type)
+                ->setReturnType($schema->type)
                 ->addBody(strtr('return $this->{propertyName};', ['{propertyName}' => $property->getName()]));
         }
 

@@ -43,28 +43,20 @@ final class Response
         $serializer->addComment('{@inheritdoc}')->addComment('@return array<string,string>');
         $serializer->addBody('return [');
         $contentType = 'application/json';
+        /** @var MediaType $mediaType */
         $mediaType = $response->content[$contentType];
-        if ($mediaType instanceof MediaType) {
-            $schema = $mediaType->schema;
-            if ($schema instanceof Schema) {
-                foreach ($schema->properties as $propertyName => $property) {
-                    if ($property instanceof Schema) {
-                        $class->addProperty($propertyName)->setPrivate()->setType($property->type);
-                        $constructor->addParameter($propertyName)->setType($property->type);
-                        $constructor->addBody('$this->? = $?;', [$propertyName, $propertyName]);
-                        $serializer->addBody('    ? => $this->?,', [$propertyName, $propertyName]);
-                    } else {
-                        $this->logger->debug('Property type is not Schema', ['propertyType' => get_class($property)]);
-                    }
-                }
-            } else {
-                $this->logger->debug(
-                    'Schema is not type of Schema',
-                    ['schemaType' => $schema === null ? null : get_class($schema)]
-                );
+        /** @var Schema|null $schema */
+        $schema = $mediaType->schema;
+        if ($schema instanceof Schema) {
+            /** @var Schema $property */
+            foreach ($schema->properties as $propertyName => $property) {
+                $class->addProperty($propertyName)->setPrivate()->setType($property->type);
+                $constructor->addParameter($propertyName)->setType($property->type);
+                $constructor->addBody('$this->? = $?;', [$propertyName, $propertyName]);
+                $serializer->addBody('    ? => $this->?,', [$propertyName, $propertyName]);
             }
         } else {
-            $this->logger->debug('Content media type is not MediaType', ['mediaType' => get_class($mediaType)]);
+            $this->logger->debug('Schema not found');
         }
 
         $serializer->addBody('];');
