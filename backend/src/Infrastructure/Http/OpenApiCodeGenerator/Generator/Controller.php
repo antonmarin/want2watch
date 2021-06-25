@@ -47,9 +47,12 @@ final class Controller
         );
         $callback->addComment('@param Request $request');
         $callback->addComment('@return ResponseDTO');
-        $firstSuccessCode = $this->filterSuccessCode(array_keys($operation->responses->getResponses()));
-        if ($firstSuccessCode !== null) {
-            $callback->addBody(strtr('return new Response{code}();', ['{code}' => $firstSuccessCode]));
+        $responses = $operation->responses;
+        if ($responses !== null) {
+            $firstSuccessCode = $this->filterSuccessCode(array_keys($responses->getResponses()));
+            if ($firstSuccessCode !== null) {
+                $callback->addBody(strtr('return new Response{code}();', ['{code}' => $firstSuccessCode]));
+            }
         }
 
         return $this->printer->printFile($file);
