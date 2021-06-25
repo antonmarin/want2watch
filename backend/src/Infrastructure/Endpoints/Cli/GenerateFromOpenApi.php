@@ -2,12 +2,15 @@
 
 declare(strict_types=1);
 
-namespace antonmarin\want2watch\Infrastructure\Http\OpenApiCodeGenerator;
+namespace antonmarin\want2watch\Infrastructure\Endpoints\Cli;
 
+use antonmarin\want2watch\Infrastructure\Http\OpenApiCodeGenerator\Specification;
+use antonmarin\want2watch\Infrastructure\Http\OpenApiCodeGenerator\SpecificationException;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-final class Command extends \Symfony\Component\Console\Command\Command
+final class GenerateFromOpenApi extends Command
 {
     protected static $defaultName = 'openapi:generate';
     private string $specificationPath;

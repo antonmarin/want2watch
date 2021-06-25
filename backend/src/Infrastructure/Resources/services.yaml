@@ -7,7 +7,7 @@ services:
   antonmarin\want2watch\Infrastructure\:
     resource: '../*'
 
-  antonmarin\want2watch\Infrastructure\Http\OpenApiCodeGenerator\Command:
+  antonmarin\want2watch\Infrastructure\Endpoints\Cli\GenerateFromOpenApi:
     arguments:
       - '%kernel.project_dir%/http/specification.yml'
 

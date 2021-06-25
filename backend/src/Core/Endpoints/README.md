@@ -28,3 +28,26 @@ class Controller
     }
 }
 ```
+
+To implement CLI command override `execute()` instead using `setCode()`.
+Typical command look like:
+```php
+final class GenerateFromOpenApi extends Command
+{
+    protected static $defaultName = 'some-namespace:some-action';
+    
+    protected function execute(InputInterface $input, OutputInterface $output): int
+    {
+        $output->writeln('Generating entrypoints from ' . $this->specificationPath);
+        try {
+            $this->specification->generateCode($this->specificationPath);
+
+            return self::SUCCESS;
+        } catch (SpecificationException $e) {
+            $output->writeln('Error reading specification: ' . $e->getMessage());
+        }
+
+        return self::FAILURE;
+    }
+}
+```
