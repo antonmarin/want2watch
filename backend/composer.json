@@ -37,7 +37,7 @@
         "symfony/dependency-injection": "^5.3",
         "symfony/error-handler": "^5.3",
         "symfony/event-dispatcher": "^5.3",
-        "symfony/framework-bundle": "5.3.x-dev",
+        "symfony/framework-bundle": "^5.3.2",
         "symfony/http-foundation": "^5.3",
         "symfony/http-kernel": "^5.3",
         "symfony/routing": "^5.3",
