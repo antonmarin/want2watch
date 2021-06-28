@@ -1,3 +1,7 @@
 /.php_cs.cache
 /var/
 /vendor
+
+# openapi generation
+/src/*/Endpoints/Http/*/Request.php
+/src/*/Endpoints/Http/*/Response*.php

@@ -52,5 +52,11 @@
         "phpstan/phpstan-strict-rules": "^0.12.9",
         "phpunit/phpunit": "^9.5",
         "roave/security-advisories": "dev-latest"
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "bin/console cache:warmup",
+            "bin/console openapi:generate"
+        ]
     }
 }
