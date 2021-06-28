@@ -19,7 +19,7 @@ IMAGE_TAG?="antonmarin/want2watch:dev"
 ###
 # Goals shortcuts
 ###
-lint: lint-composer lint-cs lint-dockerfile lint-markdown lint-yaml #? prebuild validation
+lint: lint-composer lint-cs lint-dockerfile lint-markdown lint-yaml lint-spec #? prebuild validation
 pipe: lint build validate-post-build #? behavior similar to CI pipeline
 validate-post-build: container composer-require sat phpunit #? postbuild validation
 
@@ -58,6 +58,8 @@ lint-dockerfile:
 		/app/Dockerfile
 lint-markdown:
 	docker run --rm -v "$(PWD):/app" -w /app markdownlint/markdownlint -i -g /app
+lint-spec:
+	docker run --rm -v $(PWD):/app jeanberu/swagger-cli swagger-cli validate /app/http/specification.yml
 lint-yaml:
 	docker run --rm -v $(PWD):/app -w /app sdesbure/yamllint sh -c "yamllint /app/*.yml /app/http/*.yml"
 phpunit:
