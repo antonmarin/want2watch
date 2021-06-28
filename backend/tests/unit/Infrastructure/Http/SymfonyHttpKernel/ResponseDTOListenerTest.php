@@ -22,7 +22,10 @@ use function PHPUnit\Framework\assertEquals;
 
 final class ResponseDTOListenerTest extends TestCase
 {
-    public function testSubscribeToKernelViewEvent(): void
+    /**
+     * @test
+     */
+    public function subscribeToKernelViewEvent(): void
     {
         $subscribedEvents = ResponseDTOListener::getSubscribedEvents();
 
@@ -31,8 +34,10 @@ final class ResponseDTOListenerTest extends TestCase
 
     /**
      * @throws JsonException
+     *
+     * @test
      */
-    public function testShouldConvertDTOtoResponseBodyWhenDTOSupportsAndHasBody(): void
+    public function shouldConvertDTOtoResponseBodyWhenDTOSupportsAndHasBody(): void
     {
         $listener = new ResponseDTOListener();
         $responseDTO = new DTOConvertableToBody();
@@ -55,7 +60,10 @@ final class ResponseDTOListenerTest extends TestCase
         );
     }
 
-    public function testShouldExceptionWhenDTONotImplementRequired(): void
+    /**
+     * @test
+     */
+    public function shouldExceptionWhenDTONotImplementRequired(): void
     {
         $listener = new ResponseDTOListener();
         $responseDTO = new NotImplements();
@@ -70,7 +78,10 @@ final class ResponseDTOListenerTest extends TestCase
         $listener->convertDTOToResponse($event);
     }
 
-    public function testShouldExceptionWhenDTONotSerializable(): void
+    /**
+     * @test
+     */
+    public function shouldExceptionWhenDTONotSerializable(): void
     {
         $listener = new ResponseDTOListener();
         $responseDTO = new NotSerializable();
@@ -85,7 +96,10 @@ final class ResponseDTOListenerTest extends TestCase
         $listener->convertDTOToResponse($event);
     }
 
-    public function testShouldExceptionWhenBadStatusCode(): void
+    /**
+     * @test
+     */
+    public function shouldExceptionWhenBadStatusCode(): void
     {
         $listener = new ResponseDTOListener();
         $responseDTO = new BadStatusCode();

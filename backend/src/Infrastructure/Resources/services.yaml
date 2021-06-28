@@ -7,6 +7,15 @@ services:
   antonmarin\want2watch\Infrastructure\:
     resource: '../*'
 
+  antonmarin\want2watch\Infrastructure\Endpoints\Cli\GenerateFromOpenApi:
+    arguments:
+      - '%kernel.project_dir%/http/specification.yml'
+
+  antonmarin\want2watch\Infrastructure\Http\OpenApiCodeGenerator\NetteGenerator:
+    arguments:
+      - '%kernel.project_dir%/src/Core/Endpoints/Http'
+      - 'antonmarin\want2watch\Core\Endpoints\Http'
+
   antonmarin\want2watch\Infrastructure\Http\SymfonyHttpKernel\RequestDTOResolver:
     tags:
       - { name: controller.request_value_resolver, priority: 50 }
@@ -19,3 +28,11 @@ services:
     class: Symfony\Component\HttpKernel\Log\Logger
     arguments:
       - !php/const Psr\Log\LogLevel::NOTICE
+  logger.info:
+    class: Symfony\Component\HttpKernel\Log\Logger
+    arguments:
+      - !php/const Psr\Log\LogLevel::INFO
+  logger.debug:
+    class: Symfony\Component\HttpKernel\Log\Logger
+    arguments:
+      - !php/const Psr\Log\LogLevel::DEBUG

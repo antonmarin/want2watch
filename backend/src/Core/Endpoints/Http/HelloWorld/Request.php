@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace antonmarin\want2watch\Core\Endpoints\Http\HelloWorld;
 
-use antonmarin\want2watch\Infrastructure\Http\SymfonyHttpKernel\RequestDTO;
 use Symfony\Component\Validator\Constraints as Assert;
+use antonmarin\want2watch\Infrastructure\Http\SymfonyHttpKernel\RequestDTO;
 
 final class Request implements RequestDTO
 {

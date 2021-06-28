@@ -6,6 +6,10 @@ parameters:
     level: 8
     paths:
         - src/
+    ignoreErrors:
+        -
+            message: '#Unused @throws Symfony\\Component\\Console\\Exception\\LogicException annotation#'
+            path: src/*/Endpoints/Cli/*.php
     inferPrivatePropertyTypeFromConstructor: true
     exceptionRules:
         reportUnusedCatchesOfUncheckedExceptions: true

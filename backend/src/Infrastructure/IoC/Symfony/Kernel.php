@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace antonmarin\want2watch\Infrastructure\IoC\Symfony;
 
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -45,13 +46,15 @@ final class Kernel extends BaseKernel implements CompilerPassInterface
 
     public function process(ContainerBuilder $container): void
     {
+        $container->setAlias(LoggerInterface::class, $this->isDebug() ? 'logger.debug' : 'logger.info');
+
         $container->setDefinition(
             'exception_listener',
             (new Definition(
                 ErrorListener::class,
                 [
                     (string)param('kernel.error_controller'),
-                    new Reference($this->isDebug() ? 'logger' : 'logger.critical'),
+                    new Reference($this->isDebug() ? 'logger.debug' : 'logger.critical'),
                     (string)param('kernel.debug'),
                 ]
             ))
@@ -67,7 +70,7 @@ final class Kernel extends BaseKernel implements CompilerPassInterface
                     new Reference('router'),
                     new Reference('request_stack'),
                     new Reference('router.request_context'),
-                    new Reference($this->isDebug() ? 'logger' : 'logger.notice'),
+                    new Reference($this->isDebug() ? 'logger.debug' : 'logger.notice'),
                     (string)param('kernel.project_dir'),
                     (string)param('kernel.debug'),
                 ]

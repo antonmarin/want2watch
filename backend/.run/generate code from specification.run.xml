@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="generate code from specification" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/backend/bin/console" scriptParameters="openapi:generate">
+    <CommandLine>
+      <PhpTestInterpreterSettings>
+        <option name="interpreterName" value="docker-compose" />
+      </PhpTestInterpreterSettings>
+    </CommandLine>
+    <method v="2" />
+  </configuration>
+</component>
