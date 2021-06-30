@@ -3,10 +3,12 @@ on:
   push:
     paths:
       - 'backend/**'
-      - '.github/workflows/**'
+      - '.github/workflows/backend.yml'
 defaults:
   run:
     working-directory: backend
+env:
+  IMAGE_TAG: "antonmarin/want2watch:latest"
 jobs:
   pipeline:
     name: pipeline
@@ -20,3 +22,8 @@ jobs:
         run: make build
       - name: Post-build validations
         run: make validate-post-build
+      - name: Push image
+        if: ${{ github.ref == 'refs/heads/master' }}
+        run: |
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u antonmarin --password-stdin
+          docker push $IMAGE_TAG
