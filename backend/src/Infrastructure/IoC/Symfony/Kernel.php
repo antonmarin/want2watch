@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace antonmarin\want2watch\Infrastructure\IoC\Symfony;
+namespace Infrastructure\IoC\Symfony;
 
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;

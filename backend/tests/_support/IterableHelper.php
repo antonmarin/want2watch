@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace antonmarin\want2watch\tests\support;
+namespace tests\support;
 
 final class IterableHelper
 {

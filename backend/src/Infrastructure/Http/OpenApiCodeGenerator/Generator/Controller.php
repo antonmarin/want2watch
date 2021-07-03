@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace antonmarin\want2watch\Infrastructure\Http\OpenApiCodeGenerator\Generator;
+namespace Infrastructure\Http\OpenApiCodeGenerator\Generator;
 
-use antonmarin\want2watch\Infrastructure\Http\SymfonyHttpKernel\ResponseDTO;
+use Infrastructure\Http\SymfonyHttpKernel\ResponseDTO;
 use cebe\openapi\spec\Operation;
 use Nette\PhpGenerator\PhpFile;
 use Nette\PhpGenerator\PhpNamespace;

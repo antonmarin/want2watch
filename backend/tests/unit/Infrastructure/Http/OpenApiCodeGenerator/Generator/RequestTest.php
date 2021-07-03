@@ -4,9 +4,9 @@
 
 declare(strict_types=1);
 
-namespace antonmarin\want2watch\Infrastructure\Http\OpenApiCodeGenerator\Generator;
+namespace Infrastructure\Http\OpenApiCodeGenerator\Generator;
 
-use antonmarin\want2watch\Infrastructure\Http\SymfonyHttpKernel\RequestDTO;
+use Infrastructure\Http\SymfonyHttpKernel\RequestDTO;
 use cebe\openapi\Reader;
 use cebe\openapi\spec\Operation;
 use Nette\PhpGenerator\PhpNamespace;
@@ -18,10 +18,10 @@ final class RequestTest extends TestCase
 
 declare(strict_types=1);
 
-namespace antonmarin\want2watch\Core\Endpoints\Http\HelloWorld;
+namespace Core\Endpoints\Http\HelloWorld;
 
+use Infrastructure\Http\SymfonyHttpKernel\RequestDTO;
 use Symfony\Component\Validator\Constraints as Assert;
-use antonmarin\want2watch\Infrastructure\Http\SymfonyHttpKernel\RequestDTO;
 
 final class Request implements RequestDTO
 {
@@ -63,7 +63,7 @@ final class Request implements RequestDTO
 
         $fileString = $generator->generateFile(
             $operation,
-            new PhpNamespace('antonmarin\want2watch\Core\Endpoints\Http\HelloWorld')
+            new PhpNamespace('Core\Endpoints\Http\HelloWorld')
         );
 
         self::assertSame(self::REQUIRED_STRING_IN_QUERY, $fileString);

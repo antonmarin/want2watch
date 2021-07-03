@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use antonmarin\want2watch\Infrastructure\IoC\Symfony\Kernel;
+use Infrastructure\IoC\Symfony\Kernel;
 use Symfony\Component\ErrorHandler\Debug;
 use Symfony\Component\HttpFoundation\Request;
 

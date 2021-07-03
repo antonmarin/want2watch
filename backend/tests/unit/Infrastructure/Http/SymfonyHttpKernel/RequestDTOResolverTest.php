@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace antonmarin\want2watch\Infrastructure\Http\SymfonyHttpKernel;
+namespace Infrastructure\Http\SymfonyHttpKernel;
 
-use antonmarin\want2watch\tests\support\IterableHelper;
+use tests\support\IterableHelper;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\Test\TestLogger;
 use Symfony\Component\HttpFoundation\Request;

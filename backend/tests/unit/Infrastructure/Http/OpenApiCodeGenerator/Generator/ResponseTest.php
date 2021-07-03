@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace antonmarin\want2watch\Infrastructure\Http\OpenApiCodeGenerator\Generator;
+namespace Infrastructure\Http\OpenApiCodeGenerator\Generator;
 
 use cebe\openapi\Reader;
 use cebe\openapi\spec\Responses;
@@ -16,9 +16,9 @@ final class ResponseTest extends TestCase
 
 declare(strict_types=1);
 
-namespace antonmarin\want2watch\Core\Endpoints\Http\HelloWorld;
+namespace Core\Endpoints\Http\HelloWorld;
 
-use antonmarin\want2watch\Infrastructure\Http\SymfonyHttpKernel\ResponseDTO;
+use Infrastructure\Http\SymfonyHttpKernel\ResponseDTO;
 
 final class Response200 implements ResponseDTO
 {
@@ -72,7 +72,7 @@ final class Response200 implements ResponseDTO
         $fileString = $generator->generateFile(
             $response,
             200,
-            new PhpNamespace('antonmarin\want2watch\Core\Endpoints\Http\HelloWorld')
+            new PhpNamespace('Core\Endpoints\Http\HelloWorld')
         );
 
         self::assertSame(self::RESULT, $fileString);

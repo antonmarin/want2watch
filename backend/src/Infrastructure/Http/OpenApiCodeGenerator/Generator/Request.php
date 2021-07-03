@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace antonmarin\want2watch\Infrastructure\Http\OpenApiCodeGenerator\Generator;
+namespace Infrastructure\Http\OpenApiCodeGenerator\Generator;
 
-use antonmarin\want2watch\Infrastructure\Http\SymfonyHttpKernel\RequestDTO;
+use Infrastructure\Http\SymfonyHttpKernel\RequestDTO;
 use cebe\openapi\spec\Operation;
 use cebe\openapi\spec\Parameter;
 use cebe\openapi\spec\Schema;

@@ -4,7 +4,7 @@
 
 declare(strict_types=1);
 
-namespace antonmarin\want2watch\Infrastructure\Http\SymfonyHttpKernel;
+namespace Infrastructure\Http\SymfonyHttpKernel;
 
 use InvalidArgumentException;
 use JsonException;
