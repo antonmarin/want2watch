@@ -11,13 +11,16 @@
     ],
     "autoload": {
         "psr-4": {
-            "antonmarin\\want2watch\\": "src"
+            "": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "antonmarin\\want2watch\\": "tests/unit",
-            "antonmarin\\want2watch\\tests\\support\\": "tests/_support"
+            "": [
+              "tests/unit",
+              "tests/integration"
+            ],
+            "tests\\support\\": "tests/_support"
         }
     },
     "config": {

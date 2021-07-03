@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace antonmarin\want2watch\Infrastructure\Http\OpenApiCodeGenerator;
+namespace Infrastructure\Http\OpenApiCodeGenerator;
 
-use antonmarin\want2watch\Infrastructure\Http\OpenApiCodeGenerator\Generator\Controller;
-use antonmarin\want2watch\Infrastructure\Http\OpenApiCodeGenerator\Generator\Request;
-use antonmarin\want2watch\Infrastructure\Http\OpenApiCodeGenerator\Generator\Response;
+use Infrastructure\Http\OpenApiCodeGenerator\Generator\Controller;
+use Infrastructure\Http\OpenApiCodeGenerator\Generator\Request;
+use Infrastructure\Http\OpenApiCodeGenerator\Generator\Response;
 use cebe\openapi\spec\OpenApi;
 use cebe\openapi\spec\Operation;
 use cebe\openapi\spec\PathItem;

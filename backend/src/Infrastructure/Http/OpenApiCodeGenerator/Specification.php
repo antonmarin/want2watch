@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace antonmarin\want2watch\Infrastructure\Http\OpenApiCodeGenerator;
+namespace Infrastructure\Http\OpenApiCodeGenerator;
 
 use cebe\openapi\exceptions\IOException;
 use cebe\openapi\exceptions\TypeErrorException;

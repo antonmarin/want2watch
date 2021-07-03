@@ -4,19 +4,19 @@ services:
     autowire: true      # Automatically injects dependencies in your services.
     autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
-  antonmarin\want2watch\Infrastructure\:
+  Infrastructure\:
     resource: '../*'
 
-  antonmarin\want2watch\Infrastructure\Endpoints\Cli\GenerateFromOpenApi:
+  Infrastructure\Endpoints\Cli\GenerateFromOpenApi:
     arguments:
       - '%kernel.project_dir%/http/specification.yml'
 
-  antonmarin\want2watch\Infrastructure\Http\OpenApiCodeGenerator\NetteGenerator:
+  Infrastructure\Http\OpenApiCodeGenerator\NetteGenerator:
     arguments:
       - '%kernel.project_dir%/src/Core/Endpoints/Http'
-      - 'antonmarin\want2watch\Core\Endpoints\Http'
+      - 'Core\Endpoints\Http'
 
-  antonmarin\want2watch\Infrastructure\Http\SymfonyHttpKernel\RequestDTOResolver:
+  Infrastructure\Http\SymfonyHttpKernel\RequestDTOResolver:
     tags:
       - { name: controller.request_value_resolver, priority: 50 }
 
