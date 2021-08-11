@@ -1,0 +1,19 @@
+###
+POST http://localhost:8080/glide/usedAddedWantie
+Content-Type: application/json
+Accept: application/json
+
+{
+    "hookKind": "app-action",
+    "appID": "applicationIdHere",
+    "idempotencyKey": "uniqueWebhookIdHere",
+    "timestamp": "ts when the action was triggered",
+    "params": {
+        "pokemon": {
+            "type": "string|number|boolean|date-time",
+            "value": "Bulbasaur"
+        }
+    }
+}
+
+###

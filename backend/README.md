@@ -1,3 +1,9 @@
 # Want2watch
 
-Specification: `make spec-ui`
+## Specification
+
+Specification describes available input and behavior artifacts
+
+http: `make spec-ui`
+
+event stream: 

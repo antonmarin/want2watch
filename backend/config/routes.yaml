@@ -1,9 +1,9 @@
-controllers:
+core:
   resource: ../src/Core/Endpoints/Http/
   type: annotation
 
-kernel:
-  resource: ../src/Infrastructure/IoC/Symfony/Kernel.php
+events_collector:
+  resource: ../src/EventsCollector/Endpoints/Http/
   type: annotation
 
 _errors:
