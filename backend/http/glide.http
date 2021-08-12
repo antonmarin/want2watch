@@ -1,5 +1,5 @@
 ###
-POST http://localhost:8080/glide/usedAddedWantie
+POST {{hostname}}/glide/usedAddedWantie
 Content-Type: application/json
 Accept: application/json
 
