@@ -21,7 +21,7 @@ final class Controller
     }
 
     /**
-     * @Route("/glide/usedAddedWantie", name="Glide_UserAddedWantie")
+     * @Route("/glide/wantieAdded", name="Glide_WantieAdded")
      * @param Request $request
      * @return ResponseDTO
      */
