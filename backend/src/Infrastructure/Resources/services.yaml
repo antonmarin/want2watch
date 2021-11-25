@@ -16,6 +16,10 @@ services:
       - '%kernel.project_dir%/src/Core/Endpoints/Http'
       - 'Core\Endpoints\Http'
 
+  Infrastructure\Http\SymfonyHttpKernel\JsonRequestTransformerListener:
+    tags:
+      - { name: kernel.event_listener, event: !php/const \Symfony\Component\HttpKernel\KernelEvents::REQUEST }
+
   Infrastructure\Http\SymfonyHttpKernel\RequestDTOResolver:
     tags:
       - { name: controller.request_value_resolver, priority: 50 }
