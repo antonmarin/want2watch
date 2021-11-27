@@ -1,4 +1,4 @@
-###
+### timestamp when the action was triggered
 POST {{hostname}}/glide/wantieAdded
 Content-Type: application/json
 Accept: application/json
@@ -7,9 +7,9 @@ Accept: application/json
     "hookKind": "app-action",
     "appID": "applicationIdHere",
     "idempotencyKey": "uniqueWebhookIdHere",
-    "timestamp": "ts when the action was triggered",
+    "timestamp": "2021-09-24T05:23:52.263Z",
     "params": {
-        "pokemon": {
+        "wantieTitle": {
             "type": "string|number|boolean|date-time",
             "value": "Bulbasaur"
         }
