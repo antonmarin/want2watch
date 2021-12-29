@@ -2,6 +2,7 @@
 POST {{hostname}}/glide/wantieAdded
 Content-Type: application/json
 Accept: application/json
+Authorization: {{authorization}}
 
 {
     "hookKind": "app-action",

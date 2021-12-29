@@ -4,3 +4,5 @@ It's often separated by department or groups of customers. Main target of contex
 to split languages of different units.
 
 # Core users context
+
+Actors are librarians, using app through mobile and browser.

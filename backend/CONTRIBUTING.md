@@ -16,7 +16,7 @@ requirements:
 
 Are there any not automated documenting conventions?
 
-- Follow [Key words for use](https://www.ietf.org/rfc/rfc2119.txt) in conventions
+- Follow [Keywords for use](https://www.ietf.org/rfc/rfc2119.txt) in conventions
 
 ### Specification
 
@@ -63,6 +63,8 @@ What tools and utilities we use and what for?
 How to verify application is working properly?
 
 - `make test`
+- Visit [article in Martin Fowler blog](https://martinfowler.com/articles/microservice-testing/#conclusion-summary) to
+  understand naming
 
 ## Releasing
 
