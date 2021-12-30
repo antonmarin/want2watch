@@ -32,11 +32,11 @@ Are there any not automated code conventions?
 
 - Structure based on [Paul M. Jones research](https://github.com/php-pds/skeleton)
 - You may run `make lint` before commit to run quick validations without building
-- PHPStan used for SAT
+- [PHPStan](https://phpstan.org/) used for SAT. You can use `make sat` to verify while dev.
 - CodeStyle is controlled by PHP-CS-Fixer. Run `make lint-cs` to use.
   Also included in `make lint`
 - Describe why @noinspection or @phpstan-ignore-next-line used
-- Describe what to use instead @deprecated
+- Describe what to use instead @deprecated, prefer #Deprecated with replacement filled
 - Avoid using @test in unit tests. Naming MUST follow "should_{expected result}_when_{state under test}"
 - Using [PHP Inspections plugin](https://plugins.jetbrains.com/plugin/7622-php-inspections-ea-extended-) is mandatory
 
