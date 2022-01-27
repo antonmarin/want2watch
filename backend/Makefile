@@ -20,16 +20,14 @@ IMAGE_TAG?="antonmarin/want2watch:dev"
 # Goals shortcuts
 ###
 lint: lint-composer lint-cs lint-dockerfile lint-markdown lint-yaml lint-spec #? prebuild validation
-pipe: lint build validate-post-build #? behavior similar to CI pipeline
-validate-post-build: container composer-require sat phpunit #? postbuild validation
+pipe: lint build test #? behavior similar to CI pipeline
+test: container test-composer sat phpunit #? post-build validation
 
 ###
 # Goals. Sort by name asc
 ###
 build: #? build dev image
 	docker build . -t $(IMAGE_TAG)
-composer-require:
-	$(CMD_DOCKER_RUN) $(IMAGE_TAG) bin/composer-require-checker.phar check /app/composer.json
 container:
 	$(CMD_DOCKER_RUN) $(IMAGE_TAG) bin/console -n lint:container
 fix-cs: #? fix codestyle
@@ -69,3 +67,5 @@ sat:
 spec-ui: #? UI to use specification
 	docker run --name swaggerui-want2watch -d -p 8092:8080 -e URL=openapi.yml -v $(PWD)/http/specification.yml:/usr/share/nginx/html/openapi.yml swaggerapi/swagger-ui
 	open http://localhost:8092
+test-composer:
+	$(CMD_DOCKER_RUN) $(IMAGE_TAG) bin/composer-require-checker.phar check /app/composer.json
