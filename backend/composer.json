@@ -1,68 +1,68 @@
 {
-    "name": "antonmarin/want2watch",
-    "description": "Bookmarks for movies and series",
-    "type": "project",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Anton Marin",
-            "email": "antonaryo85@gmail.com"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "": [
-              "tests/unit",
-              "tests/integration"
-            ],
-            "tests\\support\\": "tests/_support"
-        }
-    },
-    "config": {
-        "discard-changes": true,
-        "sort-packages": true
-    },
-    "minimum-stability": "stable",
-    "require": {
-        "php": "^7.4",
-        "ext-json": "^7.4",
-        "ext-zend-opcache": "^7.4",
-        "cebe/php-openapi": "^1.5",
-        "doctrine/annotations": "^1.12",
-        "nette/php-generator": "^3.5",
-      "psr/log": "^1.1",
-      "symfony/console": "^5.3",
-      "symfony/dependency-injection": "^5.3",
-      "symfony/error-handler": "^5.3",
-      "symfony/event-dispatcher": "^5.3",
-      "symfony/framework-bundle": "^5.3.2",
-      "symfony/http-foundation": "^5.3",
-      "symfony/http-kernel": "^5.3",
-      "symfony/routing": "^5.3",
-      "symfony/security-bundle": "^5.3",
-      "symfony/security-core": "^5.4",
-      "symfony/security-http": "^5.4",
-      "symfony/serializer-pack": "^1.0",
-      "symfony/validator": "^5.3",
-      "symfony/yaml": "^5.3"
-    },
-    "require-dev": {
-        "pepakriz/phpstan-exception-rules": "^0.11.6",
-        "phpstan/phpstan": "^0.12.74",
-        "phpstan/phpstan-deprecation-rules": "^0.12.6",
-        "phpstan/phpstan-strict-rules": "^0.12.9",
-        "phpunit/phpunit": "^9.5",
-        "roave/security-advisories": "dev-latest"
-    },
-    "scripts": {
-        "post-autoload-dump": [
-            "bin/console cache:warmup",
-            "bin/console openapi:generate"
-        ]
+  "name": "antonmarin/want2watch",
+  "description": "Bookmarks for movies and series",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Anton Marin",
+      "email": "antonaryo85@gmail.com"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "": [
+        "tests/unit",
+        "tests/integration"
+      ],
+      "tests\\support\\": "tests/_support"
+    }
+  },
+  "config": {
+    "discard-changes": true,
+    "sort-packages": true
+  },
+  "minimum-stability": "stable",
+  "require": {
+    "php": "^7.4",
+    "ext-json": "^7.4",
+    "ext-zend-opcache": "^7.4",
+    "cebe/php-openapi": "^1.5",
+    "doctrine/annotations": "^1.12",
+    "nette/php-generator": "^3.5",
+    "psr/log": "^1.1",
+    "symfony/console": "^5.3",
+    "symfony/dependency-injection": "^5.3",
+    "symfony/error-handler": "^5.3",
+    "symfony/event-dispatcher": "^5.3",
+    "symfony/framework-bundle": "^5.3.2",
+    "symfony/http-foundation": "^5.3",
+    "symfony/http-kernel": "^5.3",
+    "symfony/routing": "^5.3",
+    "symfony/security-bundle": "^5.3",
+    "symfony/security-core": "^5.4",
+    "symfony/security-http": "^5.4",
+    "symfony/serializer-pack": "^1.0",
+    "symfony/validator": "^5.3",
+    "symfony/yaml": "^5.3"
+  },
+  "require-dev": {
+    "pepakriz/phpstan-exception-rules": "^0.11.6",
+    "phpstan/phpstan": "^0.12.74",
+    "phpstan/phpstan-deprecation-rules": "^0.12.6",
+    "phpstan/phpstan-strict-rules": "^0.12.9",
+    "phpunit/phpunit": "^9.5",
+    "roave/security-advisories": "dev-latest"
+  },
+  "scripts": {
+    "post-autoload-dump": [
+      "bin/console cache:warmup",
+      "bin/console openapi:generate"
+    ]
+  }
 }
