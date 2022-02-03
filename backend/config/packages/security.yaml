@@ -1,0 +1,28 @@
+# https://symfony.com/doc/5.3/security.html
+security:
+  enable_authenticator_manager: true
+  password_hashers:
+    Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+  providers:
+    glide_password:
+      memory:
+        users:
+          glide: { password: '%env(string:GLIDE_PASS)%', roles: ['COLLECT_EVENT'] }
+  firewalls:
+    dev:
+      pattern: ^/(_(profiler|wdt)|css|images|js)/
+      security: false
+    glide:
+      stateless: true
+      pattern: ^/glide/
+      lazy: false
+      custom_authenticator:
+        - Infrastructure\Authentication\SymfonySecurity\GlideappsWebhookAuthenticationMiddleware
+
+  # Easy way to control access for large sections of your site
+  # Note: Only the *first* access control that matches will be used
+  access_control:
+  # - { path: ^/admin, roles: ROLE_ADMIN }
+  # - { path: ^/profile, roles: ROLE_USER }
+  role_hierarchy:
+    ROLE_SUPER_ADMIN: [ ]

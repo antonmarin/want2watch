@@ -14,5 +14,7 @@ services:
     environment:
       APP_ENV: dev
       APP_DEBUG: 1
+      GLIDE_PASS: |-
+        $$2y$$13$$CKKFnANpn4L7KAk7o37OaujGNEpRk/4RbbCM3oB9PGCTiD5CNu1vi
       PHP_INI_XDEBUG_REMOTE_HOST: host.docker.internal
       PHP_IDE_CONFIG: serverName=want2watch

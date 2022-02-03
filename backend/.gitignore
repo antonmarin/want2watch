@@ -5,3 +5,6 @@
 # openapi generation
 /src/*/Endpoints/Http/*/Request.php
 /src/*/Endpoints/Http/*/Response*.php
+
+# secrets
+/http/http-client.private.env.json

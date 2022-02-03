@@ -21,7 +21,7 @@ jobs:
       - name: Build application image
         run: make build
       - name: Post-build validations
-        run: make validate-post-build
+        run: make test
       - name: Push image
         if: ${{ github.ref == 'refs/heads/master' }}
         run: |

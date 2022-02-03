@@ -16,7 +16,7 @@ requirements:
 
 Are there any not automated documenting conventions?
 
-- Follow [Key words for use](https://www.ietf.org/rfc/rfc2119.txt) in conventions
+- Follow [Keywords for use](https://www.ietf.org/rfc/rfc2119.txt) in conventions
 
 ### Specification
 
@@ -32,11 +32,11 @@ Are there any not automated code conventions?
 
 - Structure based on [Paul M. Jones research](https://github.com/php-pds/skeleton)
 - You may run `make lint` before commit to run quick validations without building
-- PHPStan used for SAT
+- [PHPStan](https://phpstan.org/) used for SAT. You can use `make sat` to verify while dev.
 - CodeStyle is controlled by PHP-CS-Fixer. Run `make lint-cs` to use.
   Also included in `make lint`
 - Describe why @noinspection or @phpstan-ignore-next-line used
-- Describe what to use instead @deprecated
+- Describe what to use instead @deprecated, prefer #Deprecated with replacement filled
 - Avoid using @test in unit tests. Naming MUST follow "should_{expected result}_when_{state under test}"
 - Using [PHP Inspections plugin](https://plugins.jetbrains.com/plugin/7622-php-inspections-ea-extended-) is mandatory
 
@@ -63,6 +63,8 @@ What tools and utilities we use and what for?
 How to verify application is working properly?
 
 - `make test`
+- Visit [article in Martin Fowler blog](https://martinfowler.com/articles/microservice-testing/#conclusion-summary) to
+  understand naming
 
 ## Releasing
 
