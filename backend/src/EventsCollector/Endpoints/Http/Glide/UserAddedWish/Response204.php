@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EventsCollector\Endpoints\Http\Glide\UserAddedWantie;
+namespace EventsCollector\Endpoints\Http\Glide\UserAddedWish;
 
 use Infrastructure\Http\SymfonyHttpKernel\ResponseDTO;
 

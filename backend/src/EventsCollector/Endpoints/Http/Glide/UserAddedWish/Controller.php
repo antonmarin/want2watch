@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace EventsCollector\Endpoints\Http\Glide\UserAddedWantie;
+namespace EventsCollector\Endpoints\Http\Glide\UserAddedWish;
 
+use Infrastructure\Http\SymfonyHttpKernel\ResponseDTO;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Infrastructure\Http\SymfonyHttpKernel\ResponseDTO;
 
 final class Controller
 {

@@ -1,8 +1,21 @@
 <phpunit
-    cacheResult="false">
+        cacheResult="false"
+        convertErrorsToExceptions="true"
+        convertNoticesToExceptions="true"
+        convertWarningsToExceptions="true"
+        stopOnFailure="true">
+    <php>
+        <ini name="memory_limit" value="-1"/>
+        <env name="KERNEL_CLASS" value="\Infrastructure\IoC\Symfony\Kernel"/>
+        <env name="FRAMEWORK_TEST" value="true" force="true"/>
+    </php>
     <testsuites>
         <testsuite name="unit tests">
             <directory suffix="Test.php">tests/unit/</directory>
+        </testsuite>
+        <testsuite name="environment tests">
+            <directory suffix="Test.php">tests/integration/</directory>
+            <directory suffix="Test.php">tests/component/</directory>
         </testsuite>
     </testsuites>
 </phpunit>

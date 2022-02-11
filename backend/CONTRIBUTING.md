@@ -37,7 +37,7 @@ Are there any not automated code conventions?
   Also included in `make lint`
 - Describe why @noinspection or @phpstan-ignore-next-line used
 - Describe what to use instead @deprecated, prefer #Deprecated with replacement filled
-- Avoid using @test in unit tests. Naming MUST follow "should_{expected result}_when_{state under test}"
+- Naming MUST follow "should_{expected result}_when_{state under test}"
 - Using [PHP Inspections plugin](https://plugins.jetbrains.com/plugin/7622-php-inspections-ea-extended-) is mandatory
 
 ### Pull request
