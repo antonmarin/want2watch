@@ -60,6 +60,7 @@ lint-yaml:
 test-unit:
 	$(CMD_DOCKER_RUN) $(IMAGE_TAG) vendor/bin/phpunit --configuration phpunit.xml --testsuite "unit tests"
 test-environment:
+	docker compose run --rm app ls -la tests/component/EventsCollector/Glide
 	docker compose run --rm app /app/vendor/bin/phpunit --configuration phpunit.xml --testsuite "environment tests"
 spec-ui: #? UI to use specification
 	docker run --name swaggerui-want2watch -d -p 8092:8080 -e URL=openapi.yml -v $(PWD)/http/specification.yml:/usr/share/nginx/html/openapi.yml swaggerapi/swagger-ui
