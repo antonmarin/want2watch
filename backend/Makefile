@@ -13,7 +13,7 @@ COLOR_RED="\\033[31m"
 # Goals variables. Sort by name asc
 ###
 CMD_DOCKER_RUN?=docker run -e APP_ENV=dev -e APP_DEBUG=false -e PHP_INI_MEMORY_LIMIT=256M -t --rm
-IMAGE_TAG?="antonmarin/want2watch:dev"
+IMAGE_TAG?="antonmarin/want2watch:latest"
 
 ###
 # Goals shortcuts
@@ -60,7 +60,7 @@ lint-yaml:
 test-unit:
 	$(CMD_DOCKER_RUN) $(IMAGE_TAG) vendor/bin/phpunit --configuration phpunit.xml --testsuite "unit tests"
 test-environment:
-	docker compose run app vendor/bin/phpunit --configuration phpunit.xml --testsuite "environment tests"
+	docker compose run --rm app /app/vendor/bin/phpunit --configuration phpunit.xml --testsuite "environment tests"
 spec-ui: #? UI to use specification
 	docker run --name swaggerui-want2watch -d -p 8092:8080 -e URL=openapi.yml -v $(PWD)/http/specification.yml:/usr/share/nginx/html/openapi.yml swaggerapi/swagger-ui
 	open http://localhost:8092
