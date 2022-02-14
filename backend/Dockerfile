@@ -4,10 +4,10 @@ ENV PHP_INI_SESSION_USE_COOKIES=0
 FROM runtime as application-deps
 WORKDIR /app/
 COPY composer.json composer.lock ./
-RUN composer install --no-interaction --no-dev --no-autoloader
+RUN composer install --no-interaction --no-progress --no-dev --no-autoloader
 
 FROM application-deps as debug-deps
-RUN composer install --no-interaction --no-suggest --no-autoloader
+RUN composer install --no-interaction --no-progress --no-autoloader
 
 FROM application-deps as application
 COPY bin ./bin/
