@@ -43,7 +43,7 @@ help: #? help me
 	{ helpMsg = $$0 }' \
 	$(MAKEFILE_LIST) | column -ts:
 lint-composer:
-	docker run --rm -iv $(PWD):/app/ composer:1.9 validate --no-interaction --no-check-publish --with-dependencies
+	docker run --rm -iv $(PWD):/app/ composer:2.2 validate --no-interaction --no-check-publish --with-dependencies
 	docker run --rm -v $(PWD)/composer.lock:/app/composer.lock pplotka/local-php-security-checker-github-actions:v1.0.0
 lint-cs:
 	docker run --rm -v $(PWD):/data/ -w /data/ oskarstark/php-cs-fixer-ga:2.18.2 --dry-run --diff --allow-risky=yes
