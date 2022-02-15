@@ -1,12 +1,13 @@
+# used only for dev
 ---
 version: "3.9"
 services:
   app:
     build: .
+    image: antonmarin/want2watch:latest
     ports:
       - "8080:9000"
     volumes:
-      - ".:/app"
       - "~/.composer/auth.json:/root/.composer/auth.json"
     working_dir: "/app"
     command: ["php", "-d", "zend_extension=xdebug.so",
@@ -14,6 +15,7 @@ services:
     environment:
       APP_ENV: dev
       APP_DEBUG: 1
+      FRAMEWORK_TEST: "false"
       GLIDE_PASS: |-
         $$2y$$13$$CKKFnANpn4L7KAk7o37OaujGNEpRk/4RbbCM3oB9PGCTiD5CNu1vi
       PHP_INI_XDEBUG_REMOTE_HOST: host.docker.internal

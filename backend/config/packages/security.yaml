@@ -7,7 +7,7 @@ security:
     glide_password:
       memory:
         users:
-          glide: { password: '%env(string:GLIDE_PASS)%', roles: ['COLLECT_EVENT'] }
+          glide: { password: '%env(string:GLIDE_PASS)%', roles: [ 'COLLECT_EVENT' ] }
   firewalls:
     dev:
       pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -22,7 +22,7 @@ security:
   # Easy way to control access for large sections of your site
   # Note: Only the *first* access control that matches will be used
   access_control:
-  # - { path: ^/admin, roles: ROLE_ADMIN }
+    - { path: ^/glide/, roles: COLLECT_EVENT }
   # - { path: ^/profile, roles: ROLE_USER }
   role_hierarchy:
     ROLE_SUPER_ADMIN: [ ]

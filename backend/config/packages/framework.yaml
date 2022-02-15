@@ -1,4 +1,8 @@
 # see https://symfony.com/doc/current/reference/configuration/framework.html
+parameters:
+  # no env substitution in framework config
+  framework.test: '%env(bool:FRAMEWORK_TEST)%'
+
 framework:
   csrf_protection: false
   default_locale: en
@@ -25,6 +29,7 @@ framework:
     enabled: true
   session:
     enabled: false
+  test: '%framework.test%'
   translator:
     enabled: false
   validation:
