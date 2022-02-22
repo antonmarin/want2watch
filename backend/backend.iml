@@ -7,6 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/tests/unit" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests/_support" isTestSource="true" packagePrefix="tests\support\" />
       <sourceFolder url="file://$MODULE_DIR$/tests/integration" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/component" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/var" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/config" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-ctype" />

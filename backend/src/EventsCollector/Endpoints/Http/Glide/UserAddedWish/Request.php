@@ -16,7 +16,7 @@ final class Request implements RequestDTO
     private string $hookKind;
     private DateTimeImmutable $triggeredAt;
     private string $appID;
-    private string $wantieTitle;
+    private string $wishTitle;
 
     public function __construct(\Symfony\Component\HttpFoundation\Request $request)
     {
@@ -30,7 +30,7 @@ final class Request implements RequestDTO
         }
         $this->appID = $request->get('appID');
         $params = $request->get('params');
-        $this->wantieTitle = $params['wantieTitle']['value'];
+        $this->wishTitle = $params['wantieTitle']['value'];
     }
 
     public function getRequest(): string
@@ -58,8 +58,8 @@ final class Request implements RequestDTO
         return $this->appID;
     }
 
-    public function getWantieTitle(): string
+    public function getWishTitle(): string
     {
-        return $this->wantieTitle;
+        return $this->wishTitle;
     }
 }

@@ -12,6 +12,12 @@ requirements:
 - `docker-compose up -d`
 - `docker-compose exec app composer install`
 
+Optional:
+
+- Disable `Symfony.Service.Missing service` inspection to turn off useless highlights
+  as [services autoload](https://symfony.com/doc/5.4/service_container.html#service-container-services-load-example)
+  used. DI container validation used in CI pipeline to ensure it is valid.
+
 ## Documenting
 
 Are there any not automated documenting conventions?
