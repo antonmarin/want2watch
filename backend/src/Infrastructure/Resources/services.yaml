@@ -5,6 +5,10 @@ services:
     autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
     public: false
 
+  Core\UseCases\EventsBus: '@Infrastructure\Integrations\EventsBus\DummyEventsBus'
+  Core\Domain\Movie\Database: '@Infrastructure\Integrations\MovieDatabase\NullDatabase'
+  Core\Domain\Movie\LibrarianMovieRepository: '@Infrastructure\Integrations\MovieRepository\NullRepository'
+
   Infrastructure\:
     resource: '../*'
 
