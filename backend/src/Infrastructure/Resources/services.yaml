@@ -6,7 +6,7 @@ services:
     public: false
 
   Core\UseCases\EventsBus: '@Infrastructure\Integrations\EventsBus\DummyEventsBus'
-  Core\Domain\Movie\Database: '@Infrastructure\Integrations\MovieDatabase\NullDatabase'
+  Core\Domain\Movie\Database: '@Infrastructure\Integrations\MovieDatabase\IMDB'
   Core\Domain\Movie\LibrarianMovieRepository: '@Infrastructure\Integrations\MovieRepository\NullRepository'
 
   Infrastructure\:
@@ -28,6 +28,9 @@ services:
   Infrastructure\Http\SymfonyHttpKernel\RequestDTOResolver:
     tags:
       - { name: controller.request_value_resolver, priority: 50 }
+
+  Infrastructure\Integrations\MovieDatabase\IMDB:
+    arguments: ['@logger', "%kernel.cache_dir%"]
 
   logger.critical:
     class: Symfony\Component\HttpKernel\Log\Logger
