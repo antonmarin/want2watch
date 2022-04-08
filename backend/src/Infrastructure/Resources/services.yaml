@@ -7,7 +7,7 @@ services:
 
   Core\UseCases\EventsBus: '@Infrastructure\Integrations\EventsBus\DummyEventsBus'
   Core\Domain\Movie\Database: '@Infrastructure\Integrations\MovieDatabase\IMDB'
-  Core\Domain\Movie\LibrarianMovieRepository: '@Infrastructure\Integrations\MovieRepository\NullRepository'
+  Core\Domain\Movie\LibrarianMovieRepository: '@Infrastructure\Integrations\Null\MovieRepository'
 
   Infrastructure\:
     resource: '../*'

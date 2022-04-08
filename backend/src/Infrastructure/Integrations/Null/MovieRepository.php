@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Integrations\MovieRepository;
+namespace Infrastructure\Integrations\Null;
 
 use Core\Domain\Movie\LibrarianMovieRepository;
 use Core\Domain\Movie\Movie;
 
-final class NullRepository implements LibrarianMovieRepository
+final class MovieRepository implements LibrarianMovieRepository
 {
     public function findByTitle(string $wishTitle): ?Movie
     {
