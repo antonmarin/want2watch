@@ -8,8 +8,8 @@ use Core\Domain\Movie\Database;
 use Core\Domain\Movie\LibrarianMovieRepository;
 use Core\Domain\Movie\Movie;
 use Core\Domain\Movie\MovieCreated;
-use Core\Domain\Movie\MovieImageUpdated;
 use Core\Domain\Movie\MovieInfo;
+use Core\Domain\Movie\MoviePosterUpdated;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use Psr\Log\Test\TestLogger;
@@ -28,12 +28,13 @@ final class UpdateMovieInfoTest extends TestCase
      */
     public function shouldUpdateMovieImageWhenMovieInfoFoundAndSuccessfullyStored(): void
     {
-        $this->movieDatabase->method('search')->willReturn(new MovieInfo());
-        $this->movieRepository->method('findByTitle')->willReturn(new Movie());
+        $movieTitle = "someTitle";
+        $this->movieDatabase->method('search')->willReturn(new MovieInfo($movieTitle, "http://poster.ru"));
+        $this->movieRepository->method('findByTitle')->willReturn(new Movie($movieTitle));
 
         $this->case->execute('some');
 
-        $expectedEvents = [MovieImageUpdated::class];
+        $expectedEvents = [MoviePosterUpdated::class];
         foreach ($expectedEvents as $key => $class) {
             self::assertInstanceOf($class, $this->eventBus->raisedEvents[$key]);
         }
@@ -57,12 +58,12 @@ final class UpdateMovieInfoTest extends TestCase
      */
     public function shouldCreateNewMovieWhenMovieNotFoundInStorage(): void
     {
-        $this->movieDatabase->method('search')->willReturn(new MovieInfo());
+        $this->movieDatabase->method('search')->willReturn(new MovieInfo("someTitle", "http://poster.ru"));
         $this->movieRepository->method('findByTitle')->willReturn(null);
 
         $this->case->execute('some');
 
-        $expectedEvents = [MovieCreated::class, MovieImageUpdated::class];
+        $expectedEvents = [MovieCreated::class, MoviePosterUpdated::class];
         foreach ($expectedEvents as $key => $class) {
             self::assertInstanceOf($class, $this->eventBus->raisedEvents[$key]);
         }

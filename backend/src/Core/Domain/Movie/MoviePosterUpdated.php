@@ -6,6 +6,6 @@ namespace Core\Domain\Movie;
 
 use Core\Domain\DomainEvent;
 
-final class MovieImageUpdated implements DomainEvent
+final class MoviePosterUpdated implements DomainEvent
 {
 }

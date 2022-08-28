@@ -5,7 +5,10 @@
             <option name="interpreterName" value="docker-compose"/>
         </PhpTestInterpreterSettings>
     </CommandLine>
-    <TestRunner class="antonmarin\want2watch\Infrastructure\Http\SymfonyHttpKernel\RequestDTOResolverTest" configuration_file="phpunit.xml" file="$PROJECT_DIR$/backend/tests/Infrastructure/Http/SymfonyHttpKernel/RequestDTOResolverTest.php" method="should" scope="XML" />
+      <TestRunner class="antonmarin\want2watch\Infrastructure\Http\SymfonyHttpKernel\RequestDTOResolverTest"
+                  configuration_file="/app/phpunit.xml"
+                  file="$PROJECT_DIR$/backend/tests/Infrastructure/Http/SymfonyHttpKernel/RequestDTOResolverTest.php"
+                  method="should" scope="XML"/>
     <method v="2" />
   </configuration>
 </component>

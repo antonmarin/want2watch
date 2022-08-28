@@ -10,7 +10,6 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 final class IMDBTest extends KernelTestCase
 {
-    private string $cacheDir;
     private LoggerInterface $logger;
 
     protected function setUp(): void
@@ -25,12 +24,12 @@ final class IMDBTest extends KernelTestCase
      */
     public function shouldFindFirstFoundMovieInfoWhenMultipleFound(): void
     {
-        $database = new IMDB($this->logger, $this->cacheDir);
+        $database = new IMDB($this->logger);
 
         $movieInfo = $database->search('Изобретение лжи');
 
-        self::assertEquals('The Invention of Lying', $movieInfo->getTitle());
-        self::assertEquals(
+        self::assertSame('The Invention of Lying', $movieInfo->getTitle());
+        self::assertSame(
             'https://m.media-amazon.com/images/M/MV5BMTU2OTQzOTc1Nl5BMl5BanBnXkFtZTcwNDM5MDE4Mg@@.jpg',
             $movieInfo->getPoster()
         );

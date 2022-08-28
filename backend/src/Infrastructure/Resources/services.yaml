@@ -7,7 +7,17 @@ services:
 
   Core\UseCases\EventsBus: '@Infrastructure\Integrations\EventsBus\DummyEventsBus'
   Core\Domain\Movie\Database: '@Infrastructure\Integrations\MovieDatabase\IMDB'
-  Core\Domain\Movie\LibrarianMovieRepository: '@Infrastructure\Integrations\Null\MovieRepository'
+  Core\Domain\Movie\LibrarianMovieRepository: '@Infrastructure\Integrations\GoogleSpreadsheets\MovieRepository'
+
+  Google\Service\Sheets:
+    factory: '@Infrastructure\Integrations\GoogleSpreadsheets\SheetsClientFactory'
+    arguments: [
+      '%google.client.projectId%',
+      '%google.client.privateKeyId%',
+      '%google.client.privateKey%',
+      '%google.client.clientName%',
+      '%google.client.clientId%',
+    ]
 
   Infrastructure\:
     resource: '../*'

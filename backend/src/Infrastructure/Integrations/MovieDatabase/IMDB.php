@@ -13,7 +13,7 @@ final class IMDB implements Database
     private LoggerInterface $logger;
     private \hmerritt\Imdb $db;
 
-    public function __construct(LoggerInterface $logger, string $cacheDir)
+    public function __construct(LoggerInterface $logger)
     {
         $this->logger = $logger;
         $this->db = new \hmerritt\Imdb();
@@ -23,7 +23,7 @@ final class IMDB implements Database
     {
         $result = $this->db->film($wishTitle);
         $this->logger->debug('Found title: {$result}', ['result' => $result]);
-        if (empty($result['id'])) {
+        if ($result['id'] === "") {
             return null;
         }
 
