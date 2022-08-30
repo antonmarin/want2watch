@@ -9,8 +9,8 @@ requirements:
 - [docker](https://docs.docker.com/get-docker/)
 
 - clone project using `git clone ...`
-- `docker-compose up -d`
-- `docker-compose exec app composer install`
+- `make sh`
+- `composer install`
 
 Optional:
 
@@ -38,12 +38,12 @@ Are there any not automated code conventions?
 
 - Structure based on [Paul M. Jones research](https://github.com/php-pds/skeleton)
 - You may run `make lint` before commit to run quick validations without building
-- [PHPStan](https://phpstan.org/) used for SAT. You can use `make sat` to verify while dev.
+- [PHPStan](https://phpstan.org/) used for Static Analysis Tool. You can use `make sat` to verify while dev.
 - CodeStyle is controlled by PHP-CS-Fixer. Run `make lint-cs` to use.
   Also included in `make lint`
 - Describe why @noinspection or @phpstan-ignore-next-line used
 - Describe what to use instead @deprecated, prefer #Deprecated with replacement filled
-- Naming MUST follow "should_{expected result}_when_{state under test}"
+- Tests naming MUST follow "should_{expected result}_when_{state under test}"
 - Using [PHP Inspections plugin](https://plugins.jetbrains.com/plugin/7622-php-inspections-ea-extended-) is mandatory
 
 ### Pull request
@@ -59,16 +59,14 @@ How to integrate?
 What tools and utilities we use and what for?
 
 - [Composer scripts](https://getcomposer.org/doc/articles/scripts.md) to
-  build application code. composer may require 4G and docker 5+ G of RAM
+  build application code. Composer may require 4G and docker 5+ G of RAM
 - [docker-compose](https://docs.docker.com/compose/) to deploy while dev
-- Useful tips:
-  - `docker-compose exec app sh`
 
 ## Test
 
 How to verify application is working properly?
 
-- `make test`
+- `make pipe` simulates full CI pipeline
 - Visit [article in Martin Fowler blog](https://martinfowler.com/articles/microservice-testing/#conclusion-summary) to
   understand naming
 

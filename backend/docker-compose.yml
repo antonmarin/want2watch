@@ -1,4 +1,4 @@
-# used only for dev
+# used for dev without mounting, ci-server for ex
 ---
 version: "3.9"
 services:
@@ -8,7 +8,6 @@ services:
     ports:
       - "8080:9000"
     volumes:
-      - ".:/app"
       - "~/.composer/auth.json:/root/.composer/auth.json"
     working_dir: "/app"
     command: ["php", "-d", "zend_extension=xdebug.so",

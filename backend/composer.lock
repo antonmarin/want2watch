@@ -785,16 +785,16 @@
         },
         {
             "name": "hmerritt/imdb-api",
-            "version": "v1.1.7",
+            "version": "v1.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hmerritt/php-imdb-api.git",
-                "reference": "b9a335178bd5ba169bee4975fc53842167b8b9d5"
+                "reference": "86ba665ecbdb3c056e7fa5265bbd2647420097da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hmerritt/php-imdb-api/zipball/b9a335178bd5ba169bee4975fc53842167b8b9d5",
-                "reference": "b9a335178bd5ba169bee4975fc53842167b8b9d5",
+                "url": "https://api.github.com/repos/hmerritt/php-imdb-api/zipball/86ba665ecbdb3c056e7fa5265bbd2647420097da",
+                "reference": "86ba665ecbdb3c056e7fa5265bbd2647420097da",
                 "shasum": ""
             },
             "require": {
@@ -819,7 +819,7 @@
             "authors": [
                 {
                     "name": "Harry Merritt",
-                    "email": "harry@merritt.es"
+                    "email": "harry@mrrtt.me"
                 }
             ],
             "description": "IMDB API that can fetch film data and search results",
@@ -832,9 +832,9 @@
             ],
             "support": {
                 "issues": "https://github.com/hmerritt/php-imdb-api/issues",
-                "source": "https://github.com/hmerritt/php-imdb-api/tree/v1.1.7"
+                "source": "https://github.com/hmerritt/php-imdb-api/tree/v1.1.8"
             },
-            "time": "2022-02-26T00:26:02+00:00"
+            "time": "2022-08-29T19:56:07+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
