@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Integrations\MovieDatabase;
+namespace Infrastructure\Integrations\Null;
 
 use Core\Domain\Movie\Database;
 use Core\Domain\Movie\MovieInfo;
 
-final class NullDatabase implements Database
+final class MovieDatabase implements Database
 {
     public function search(string $wishTitle): ?MovieInfo
     {

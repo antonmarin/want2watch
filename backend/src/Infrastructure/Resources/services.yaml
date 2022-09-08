@@ -6,8 +6,18 @@ services:
     public: false
 
   Core\UseCases\EventsBus: '@Infrastructure\Integrations\EventsBus\DummyEventsBus'
-  Core\Domain\Movie\Database: '@Infrastructure\Integrations\MovieDatabase\NullDatabase'
-  Core\Domain\Movie\LibrarianMovieRepository: '@Infrastructure\Integrations\MovieRepository\NullRepository'
+  Core\Domain\Movie\Database: '@Infrastructure\Integrations\MovieDatabase\IMDB'
+  Core\Domain\Movie\LibrarianMovieRepository: '@Infrastructure\Integrations\GoogleSpreadsheets\MovieRepository'
+
+  Google\Service\Sheets:
+    factory: '@Infrastructure\Integrations\GoogleSpreadsheets\SheetsClientFactory'
+    arguments: [
+      '%google.client.projectId%',
+      '%google.client.privateKeyId%',
+      '%google.client.privateKey%',
+      '%google.client.clientName%',
+      '%google.client.clientId%',
+    ]
 
   Infrastructure\:
     resource: '../*'
@@ -28,6 +38,9 @@ services:
   Infrastructure\Http\SymfonyHttpKernel\RequestDTOResolver:
     tags:
       - { name: controller.request_value_resolver, priority: 50 }
+
+  Infrastructure\Integrations\MovieDatabase\IMDB:
+    arguments: ['@logger', "%kernel.cache_dir%"]
 
   logger.critical:
     class: Symfony\Component\HttpKernel\Log\Logger

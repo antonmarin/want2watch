@@ -21,29 +21,37 @@
         "tests/integration",
         "tests/component"
       ],
-      "tests\\support\\": "tests/_support"
+      "tests\\support\\" : "tests/_support"
     }
   },
-  "config": {
-    "discard-changes": true,
-    "sort-packages": true
+  "config" : {
+    "discard-changes" : true,
+    "sort-packages" : true
   },
-  "minimum-stability": "stable",
-  "require": {
-    "php": "^7.4",
-    "ext-json": "^7.4",
-    "ext-zend-opcache": "^7.4",
-    "cebe/php-openapi": "^1.5",
-    "doctrine/annotations": "^1.12",
-    "nette/php-generator": "^3.5",
-    "psr/log": "^1.1",
-    "symfony/console": "^5.3",
-    "symfony/dependency-injection": "^5.3",
-    "symfony/error-handler": "^5.3",
-    "symfony/event-dispatcher": "^5.3",
-    "symfony/framework-bundle": "^5.3.2",
-    "symfony/http-foundation": "^5.3",
-    "symfony/http-kernel": "^5.3",
+  "extra" : {
+    "google/apiclient-services" : [
+      "Sheets"
+    ]
+  },
+  "minimum-stability" : "stable",
+  "require" : {
+    "php" : "^7.4",
+    "ext-json" : "^7.4",
+    "ext-zend-opcache" : "^7.4",
+    "cebe/php-openapi" : "^1.5",
+    "doctrine/annotations" : "^1.12",
+    "google/apiclient" : "^2.0",
+    "google/apiclient-services" : "^0.263.0",
+    "hmerritt/imdb-api" : "^1.1",
+    "nette/php-generator" : "^3.5",
+    "psr/log" : "^1.1",
+    "symfony/console" : "^5.3",
+    "symfony/dependency-injection" : "^5.3",
+    "symfony/error-handler" : "^5.3",
+    "symfony/event-dispatcher" : "^5.3",
+    "symfony/framework-bundle" : "^5.3.2",
+    "symfony/http-foundation" : "^5.3",
+    "symfony/http-kernel" : "^5.3",
     "symfony/routing": "^5.3",
     "symfony/security-bundle": "^5.3",
     "symfony/security-core": "^5.4",

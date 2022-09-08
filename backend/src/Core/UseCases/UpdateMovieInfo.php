@@ -37,7 +37,7 @@ final class UpdateMovieInfo
         }
         $movie = $this->movieRepository->findByTitle($wishTitle);
         if ($movie === null) {
-            $createEvent = Movie::create();
+            $createEvent = Movie::create($wishTitle);
             $movie = $createEvent->getMovie();
         }
 

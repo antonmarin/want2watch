@@ -1,0 +1,7 @@
+# use with remote interpreter to mount in IDE
+---
+version: "3.9"
+services:
+  app:
+    volumes:
+      - ".:/app"

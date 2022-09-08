@@ -4,23 +4,41 @@ declare(strict_types=1);
 
 namespace Core\Domain\Movie;
 
-use Core\Domain\DomainEvent;
-
 final class Movie
 {
-    public static function create(): MovieCreated
+    private string $title;
+    private ?string $poster;
+
+    public function __construct(string $title, string $poster = null)
     {
-        return new MovieCreated(new self());
+        $this->title = $title;
+        $this->poster = $poster;
+    }
+
+    public static function create(string $title): MovieCreated
+    {
+        return new MovieCreated(new self($title));
     }
 
     /**
      * @param MovieInfo $movieInfo
-     * @return DomainEvent[]
+     * @return MoviePosterUpdated[]
      */
     public function updateInfo(MovieInfo $movieInfo): array
     {
+        $this->poster = $movieInfo->getPoster();
         return [
-            new MovieImageUpdated(),
+            new MoviePosterUpdated(),
         ];
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function getPoster(): ?string
+    {
+        return $this->poster;
     }
 }

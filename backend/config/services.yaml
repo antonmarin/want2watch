@@ -6,6 +6,11 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+  google.client.clientId: "%env(resolve:APP_GOOGLE_CLIENT_ID)%"
+  google.client.clientName: "%env(resolve:APP_GOOGLE_CLIENT_NAME)%"
+  google.client.privateKeyId: "%env(resolve:APP_GOOGLE_PRIVATE_KEY_ID)%"
+  google.client.privateKey: "%env(resolve:APP_GOOGLE_PRIVATE_KEY)%"
+  google.client.projectId: "%env(resolve:APP_GOOGLE_PROJECT_ID)%"
 
 imports:
   # paths from ./config
